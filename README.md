@@ -4,18 +4,26 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-# Nome do projeto
+#Projeto Athena
 
-## Nome do grupo
+## Agilify
 
 ## Integrantes: 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 1</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 2</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 3</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 4</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 5</a>
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 6</a> 
-- <a href="https://www.linkedin.com/in/victorbarq/">Nome do integrante 7</a>
+- <a href="https://www.linkedin.com/in/ana-luisa-goes-barbosa/">Ana Luisa Goes Barbosa
+</a>
+- <a href="https://www.linkedin.com/in/guilherme-ferreira-linhares-8638411a1/">Guilherme Ferreira Linhares
+</a>
+- <a href="https://www.linkedin.com/in/paulooctaviodepaula/">Paulo Octavio De Paula
+</a> 
+- <a href="https://www.linkedin.com/in/pedro-henrique-oliveira-lima-a6a766214/">Pedro Henrique Oliveira Lima
+</a> 
+- <a href="https://www.linkedin.com/in/pedro-bannwart-0565aa264/">Pedro Morita Bannwart
+</a>
+- <a href="https://www.linkedin.com/in/raphaela-guiland-ferraz/">Raphaela Guiland Ferraz</a> 
+- <a href="https://www.linkedin.com/in/thiago-goulart-de-oliveira/">Thiago Goulart de Oliveira
+</a>
+- <a href="https://www.linkedin.com/in/victorbarq/">Tommy Ken Ishimatsu goto
+</a>
 
 ## 📝 Descrição
 
