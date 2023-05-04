@@ -11,17 +11,23 @@
 ## Integrantes: 
 - <a href="https://www.linkedin.com/in/ana-luisa-goes-barbosa/">Ana Luisa Goes Barbosa
 </a>
+
 - <a href="https://www.linkedin.com/in/guilherme-ferreira-linhares-8638411a1/">Guilherme Ferreira Linhares
 </a>
+
 - <a href="https://www.linkedin.com/in/paulooctaviodepaula/">Paulo Octavio De Paula
-</a> 
+</a>
+
 - <a href="https://www.linkedin.com/in/pedro-henrique-oliveira-lima-a6a766214/">Pedro Henrique Oliveira Lima
-</a> 
+</a>
+
 - <a href="https://www.linkedin.com/in/pedro-bannwart-0565aa264/">Pedro Morita Bannwart
 </a>
+
 - <a href="https://www.linkedin.com/in/raphaela-guiland-ferraz/">Raphaela Guiland Ferraz</a> 
 - <a href="https://www.linkedin.com/in/thiago-goulart-de-oliveira/">Thiago Goulart de Oliveira
 </a>
+
 - <a href="https://www.linkedin.com/in/victorbarq/">Tommy Ken Ishimatsu goto
 </a>
 
