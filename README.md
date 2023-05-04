@@ -25,6 +25,7 @@
 </a>
 
 - <a href="https://www.linkedin.com/in/raphaela-guiland-ferraz/">Raphaela Guiland Ferraz</a> 
+
 - <a href="https://www.linkedin.com/in/thiago-goulart-de-oliveira/">Thiago Goulart de Oliveira
 </a>
 
