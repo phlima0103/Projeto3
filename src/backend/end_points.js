@@ -14,7 +14,7 @@ const hostname = '127.0.0.1'; // Armazena o endereço IP do localhost
 
 const port = 3000; // Armazena a porta que será utilizada para rodar o servidor web
 
-const DBPATH = './Backend/db_projeto.db'; // Armazena o caminho do arquivo que contém o banco de dados do projeto
+const DBPATH = './data/db_projeto.db'; // Armazena o caminho do arquivo que contém o banco de dados do projeto
 
 var caminho = new sqlite3.Database(DBPATH); // // Cria e armazena uma conexão com o banco de dados SQLite no caminho especificado
 
