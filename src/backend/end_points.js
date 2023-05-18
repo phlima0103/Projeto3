@@ -7,6 +7,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const app = express(); // Armazena as funcionalidades do express
 
+
+
 // Importa o módulo 'sqlite3' para se conectar e interagir com bancos de dados
 const sqlite3 = require('sqlite3').verbose();
 
@@ -196,7 +198,7 @@ app.get('/campo/tipo', (req, res) => {
 
 /*********** ENDPOINTS DE PASTAS ***********/
 // Endpoint para criar uma nova pasta
-app.post('/CriarPasta', urlencodedParser, (req, res) => {
+app.post('/criarpasta', urlencodedParser, (req, res) => {
   const nome = req.body.nome;
   const id_usuario = req.body.id_usuario;
 
@@ -227,11 +229,8 @@ app.post('/pasta/inserirtabela', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
   const sql =
-    "INSERT INTO tabela_pasta (id_pasta, id_tabela) VALUES ('" +
-    req.body.id_pasta +
-    "', '" +
-    req.body.id_tabela +
-    "')";
+  `INSERT INTO pasta (id_usuario, id_tabela) VALUES ('${req.body.id_usuario}', '${req.body.id_tabela}' )`;
+
   console.log(sql);
   db.run(sql, [], err => {
     if (err) {
@@ -316,3 +315,82 @@ app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+
+/*********** ENDPOINTS DE VISAO GERAL ***********/
+//Endpoint de listagem das informacoes de cada tabela
+app.get('/visaogeral', (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  sql = 'SELECT * FROM tabela WHERE id=' + req.query.id;
+  console.log(sql);
+  var db = new sqlite3.Database(DBPATH);
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    res.json(rows);
+  });
+  db.close();
+});
+
+
+/*********** ENDPOINTS DE FAVORITOS ***********/
+//Endpoint de listagem das informacoes de cada tabela
+app.get('/favoritos', (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  const sql = `SELECT * FROM favorito`;
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send('Erro ao buscar tabelas.');
+    } else {
+      res.json(rows);
+    }
+  });
+// db.close();
+});
+
+//Endpoint para inserir tabela aos favoritos
+app.post('/favoritos/inserirtabela', urlencodedParser, (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  const sql =
+    `INSERT INTO favorito (data, id_usuario, id_tabela) VALUES ('${req.body.data}', '${req.body.id_usuario}', '${req.body.id_tabela}' )`;
+  console.log(sql);
+  db.run(sql, [], err => {
+    if (err) {
+      throw err;
+    }
+  });
+  res.write('<p>Tabela inserida com sucesso!</p>');
+  res.end();
+  //db.close();
+});
+
+
+//Endpoint para deletar tabela dos favoritos
+app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  const sql = 'DELETE FROM favorito WHERE data = ? AND id_usuario = ? AND id_tabela = ?';
+  const {data, id_usuario, id_tabela} = req.body
+  const params = [data, id_usuario, id_tabela]
+  
+  db.run(sql, params, function (err) {
+    if (err) {
+      return res.status(500).json({ error: 'Erro ao excluir o item' });
+    }
+    
+    if (this.changes === 0) {
+      console.log(params)
+      return res
+        .status(500)
+        .json({ error: 'Item não encontrado ou já excluído', params });
+    }
+  
+    res.status(200).json({ message: 'Item excluído com sucesso' });
+  });
+});
+
+
