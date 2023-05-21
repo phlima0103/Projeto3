@@ -29,7 +29,7 @@
 - <a href="https://www.linkedin.com/in/thiago-goulart-de-oliveira/">Thiago Goulart de Oliveira
 </a>
 
-- <a href="https://www.linkedin.com/in/victorbarq/">Tommy Ken Ishimatsu goto
+- <a href="https://www.linkedin.com/in/tommygoto/">Tommy Ken Ishimatsu goto
 </a>
 
 ## 📝 Descrição
