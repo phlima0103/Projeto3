@@ -196,7 +196,7 @@ app.post('/campo/atualizar', urlencodedParser, (req, res) => {
 app.get('/campo/tipo', (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = "SELECT * FROM campo WHERE tipo = '" + req.query.tipo + "'";
+  const sql = `SELECT * FROM campo WHERE tipo = '${req.query.tipo}'`;
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -290,7 +290,7 @@ app.get('/pastas/tabelas', (req, res) => {
 app.get('/pasta/delete', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = "DELETE FROM pasta WHERE id_pasta='" + req.query.id_pasta + "'";
+  sql = `DELETE FROM pasta WHERE id_pasta='${req.query.id_pasta}'`;
   var db = new sqlite3.Database(DBPATH);
   db.run(sql, [], err => {
     if (err) {
@@ -330,7 +330,7 @@ app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
 app.get('/visaogeral', (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = 'SELECT * FROM tabela WHERE id=' + req.query.id;
+  sql = `SELECT * FROM tabela WHERE id='${req.query.id}'`;
   console.log(sql);
   var db = new sqlite3.Database(DBPATH);
   db.all(sql, [], (err, rows) => {
@@ -357,7 +357,7 @@ app.get('/favoritos', (req, res) => {
       res.json(rows);
     }
   });
-// db.close();
+  db.close();
 });
 
 //Endpoint para inserir tabela aos favoritos
@@ -374,7 +374,7 @@ app.post('/favoritos/inserirtabela', urlencodedParser, (req, res) => {
   });
   res.write('<p>Tabela inserida com sucesso!</p>');
   res.end();
-  //db.close();
+  db.close();
 });
 
 

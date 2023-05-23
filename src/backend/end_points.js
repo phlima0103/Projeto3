@@ -39,7 +39,7 @@ app.get('/tabelas', (req, res) => {
 });
 
 
-app.post('/solicitar', (req, res) => {
+app.post('/solicitar', urlencodedParser, (req, res) => {
   const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
   const {id_usuario, data, sql_code} = req.body
   const valores = [id_usuario, data, sql_code]
@@ -56,18 +56,18 @@ app.post('/solicitar', (req, res) => {
 
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
-app.put('/atualizar', urlencodedParser, (req, res) => {
+app.post('/atualizar', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = req.body.sql_code
-  
+  var sql = `SELECT sql_code FROM solicitacoes WHERE id_solicitacao = ${req.body.id_solicitacao}`
+  console.log(sql)
   console.log(sql);
-  var db = new sqlite3.Database(DBPATH);
-  db.run(sql, [], err => {
+  db.get(sql, (err, rows) => {
     if (err) {
       throw err;
+    } else {
+      res.status(200).send(sql)
     }
-    res.end();
   });
   res.write('<p>Campo Atualizado com sucesso!</p>');
   db.close();
@@ -123,28 +123,28 @@ app.get('/campos', (req, res) => {
 // });
 
 //Endpoint para a realização da atualização dos metadados do formulário, de acordo com o formulário
-app.post('/campo/atualizar', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = `UPDATE campo SET nome='${req.body.nome}', tipo='${req.body.tipo}', descricao='${req.body.descricao}' 
-  WHERE id_tabela='${req.body.id_tabela}'`;
-  console.log(sql);
-  var db = new sqlite3.Database(DBPATH);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-    res.end();
-  });
-  res.write('<p>Campo Atualizado com sucesso!</p>');
-  db.close();
-});
+// app.post('/campo/atualizar', urlencodedParser, (req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   sql = `UPDATE campo SET nome='${req.body.nome}', tipo='${req.body.tipo}', descricao='${req.body.descricao}' 
+//   WHERE id_tabela='${req.body.id_tabela}'`;
+//   console.log(sql);
+//   var db = new sqlite3.Database(DBPATH);
+//   db.run(sql, [], err => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.end();
+//   });
+//   res.write('<p>Campo Atualizado com sucesso!</p>');
+//   db.close();
+// });
 
 // Endpoint para filtrar os campos de acordo com a sua categoria
 app.get('/campo/tipo', (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = "SELECT * FROM campo WHERE tipo = '" + req.query.tipo + "'";
+  const sql = `SELECT * FROM campo WHERE tipo = '${req.query.tipo}'`;
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -238,7 +238,7 @@ app.get('/pastas/tabelas', (req, res) => {
 app.get('/pasta/delete', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = "DELETE FROM pasta WHERE id_pasta='" + req.query.id_pasta + "'";
+  sql = `DELETE FROM pasta WHERE id_pasta='${req.query.id_pasta}'`;
   var db = new sqlite3.Database(DBPATH);
   db.run(sql, [], err => {
     if (err) {
@@ -278,7 +278,7 @@ app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
 app.get('/visaogeral', (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = 'SELECT * FROM tabela WHERE id=' + req.query.id;
+  sql = `SELECT * FROM tabela WHERE id='${req.query.id}'`;
   console.log(sql);
   var db = new sqlite3.Database(DBPATH);
   db.all(sql, [], (err, rows) => {
@@ -305,7 +305,7 @@ app.get('/favoritos', (req, res) => {
       res.json(rows);
     }
   });
-// db.close();
+  db.close();
 });
 
 //Endpoint para inserir tabela aos favoritos
@@ -322,7 +322,7 @@ app.post('/favoritos/inserirtabela', urlencodedParser, (req, res) => {
   });
   res.write('<p>Tabela inserida com sucesso!</p>');
   res.end();
-  //db.close();
+  db.close();
 });
 
 
@@ -348,6 +348,7 @@ app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
     res.status(200).json({ message: 'Item excluído com sucesso' });
   });
 });
+
 
 // Inicia o servidor
 app.listen(port, hostname, () => {
