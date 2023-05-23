@@ -8,7 +8,6 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const app = express(); // Armazena as funcionalidades do express
 
 
-
 // Importa o módulo 'sqlite3' para se conectar e interagir com bancos de dados
 const sqlite3 = require('sqlite3').verbose();
 
@@ -39,62 +38,29 @@ app.get('/tabelas', (req, res) => {
   });
 });
 
-//Endpoint para o formulário que permite que o usuário consiga atualizar os metadados da tabela
-app.get('/atualizar', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = 'SELECT * FROM tabela WHERE id=' + req.query.id;
-  console.log(sql);
-  var db = new sqlite3.Database(DBPATH);
-  db.all(sql, [], (err, rows) => {
+
+app.post('/solicitar', (req, res) => {
+  const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
+  const {id_usuario, data, sql_code} = req.body
+  const valores = [id_usuario, data, sql_code]
+
+  db.run(sql, valores, (err) => {
     if (err) {
-      throw err;
+      throw err
+    } else {
+      console.log(sql)
+      res.status(200).send("Tabela inserida")
     }
-    res.json(rows);
-  });
-  db.close();
-});
+  })
+})
+
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
-app.post('/atualizar', urlencodedParser, (req, res) => {
+app.put('/atualizar', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql =
-    "UPDATE tabela SET id_bd='" +
-    req.body.id_bd +
-    "', nome= '" +
-    req.body.nome +
-    "' , categoria='" +
-    req.body.categoria +
-    "', descricao='" +
-    req.body.descricao +
-    "', criticidade='" +
-    req.body.criticidade +
-    "', dado_sensivel='" +
-    req.body.dado_sensivel +
-    "', verificacao_governanca=' " +
-    req.body.verificacao_governanca +
-    "', defasagem='" +
-    req.body.defasagem +
-    "', database='" +
-    req.body.database +
-    "', caminho='" +
-    req.body.caminho +
-    "', script_alimentacao='" +
-    req.body.script_alimentacao +
-    "', eng_ingestao='" +
-    req.body.eng_ingestao +
-    "', owner='" +
-    req.body.owner +
-    "', steward='" +
-    req.body.steward +
-    " ', ajuste_nomenclatura='" +
-    req.body.ajuste_nomenclatura +
-    " ', id='" +
-    req.body.id +
-    "'WHERE id='" +
-    req.body.id +
-    "'";
+  sql = req.body.sql_code
+  
   console.log(sql);
   var db = new sqlite3.Database(DBPATH);
   db.run(sql, [], err => {
@@ -107,20 +73,22 @@ app.post('/atualizar', urlencodedParser, (req, res) => {
   db.close();
 });
 
+//Endpoint
+
 // Endpoint para filtrar as tabelas de acordo com a sua categoria
-app.get('/tabelas/filtro', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM tabela WHERE categoria =` + req.query.categoria;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send('Erro ao buscar tabelas.');
-    } else {
-      res.json(rows);
-    }
-  });
-});
+// app.get('/tabelas/filtro', (req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   const sql = `SELECT * FROM tabela WHERE categoria =` + req.query.categoria;
+//   db.all(sql, [], (err, rows) => {
+//     if (err) {
+//       console.error(err.message);
+//       res.status(500).send('Erro ao buscar tabelas.');
+//     } else {
+//       res.json(rows);
+//     }
+//   });
+// });
 
 /*********** ENDPOINTS DE CAMPOS ***********/
 // Endpoint que lista todos os campos que estao em uma tabela
@@ -140,34 +108,26 @@ app.get('/campos', (req, res) => {
 });
 
 // Endpoint para filtrar os campos de acordo com seu tipo
-app.get('/campos/filtro', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = 'SELECT * FROM campo WHERE id_tabela=' + req.query.id_tabela;
-  var db = new sqlite3.Database(DBPATH);
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      throw err;
-    }
-    res.json(rows);
-  });
-  db.close();
-});
+// app.get('/campos/filtro', (req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   sql = 'SELECT * FROM campo WHERE id_tabela=' + req.query.id_tabela;
+//   var db = new sqlite3.Database(DBPATH);
+//   db.all(sql, [], (err, rows) => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.json(rows);
+//   });
+//   db.close();
+// });
 
 //Endpoint para a realização da atualização dos metadados do formulário, de acordo com o formulário
 app.post('/campo/atualizar', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  sql =
-  "UPDATE campo SET nome='" +
-  req.body.nome +
-  "', tipo='" +
-  req.body.tipo +
-  "', descricao='" +
-  req.body.descricao +
-  "' WHERE id_tabela='" +
-  req.body.id_tabela +
-  "'";
+  sql = `UPDATE campo SET nome='${req.body.nome}', tipo='${req.body.tipo}', descricao='${req.body.descricao}' 
+  WHERE id_tabela='${req.body.id_tabela}'`;
   console.log(sql);
   var db = new sqlite3.Database(DBPATH);
   db.run(sql, [], err => {
@@ -311,10 +271,6 @@ app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
   });
 });
 
-// Inicia o servidor
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
 
 
 /*********** ENDPOINTS DE VISAO GERAL ***********/
@@ -393,4 +349,8 @@ app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
   });
 });
 
+// Inicia o servidor
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
