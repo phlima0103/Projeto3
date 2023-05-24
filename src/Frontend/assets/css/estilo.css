@@ -274,3 +274,205 @@ html, body {
   cursor: pointer;
   background: transparent url("../img/filtroPreenchido.svg") no-repeat;
 }
+
+/* Parte de TABS */
+.secao__div-tabs {
+  position: relative;
+  margin: 0 auto;
+}
+.secao__div-tabs::after {
+  content: '.';
+  display: block;
+  clear: both;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  visibility: none;
+}
+input.secao-botoes__input {
+  display: none;
+}
+input.secao-botoes__input + label + .secao-conteudo {
+  width: auto;
+  display: none;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  transition: opacity ease-in-out .3s;
+}
+input.secao-botoes__input:checked + .secao-botoes__label + .secao-conteudo {
+  display: flex;
+  z-index: 900;
+}
+input.secao-botoes__input + .secao-botoes__label {
+  line-height: 40px;
+  padding: 0 20px;
+  float: left;
+  background: #FFFFFF;
+  color: #4DA9FF;
+  cursor: pointer;
+  position: relative;
+  top: -2.6rem;
+  transition: background ease-in-out .3s;
+}
+input.secao-botoes__input:checked + .secao-botoes__label {
+  color: #FFFFFF;
+  background: #4DA9FF;
+  position: relative;
+  top: -3.2rem;
+  padding-bottom: 0.6rem;
+}
+.secao-botoes__input-acesso {
+  position: relative;
+  top: -2.78rem;
+  float: right;
+  margin-right: 1rem;
+}
+/* Tela sobre a tabela */
+.secao {
+  padding: 5rem;
+  text-align: center;
+  background: #F3F4F9;
+  position: sticky;
+}
+.secao__titulo {
+  font-family: 'Ubuntu', sans-serif;
+}
+.secao-botoes__input-acesso {
+  background: #4DA9FF;
+  color: #FFFFFF;
+  padding: .5rem 1rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  transition: all ease .2s;
+  position: sticky;
+  outline: none;
+  border: none;
+  position: absolute;
+  right: 0rem;
+}
+.secao-botoes__input-acesso:hover, .secao-botoes__botao:hover, .secao-botoes__botao:nth-child(1):hover {
+  background: #408BD1;
+  color: #C2BFBF;
+  cursor: pointer;
+}
+.secao-botoes__label {
+  border-radius: 20px 20px 0px 0px;
+  padding: 0.7rem 2.5rem 0.7rem 2.5rem;
+  border: 1px solid #4DA9FF;
+  background: #FFFFFF;
+  transition: all ease .2s;
+  font-family: 'Poppins', sans-serif;
+}
+.secao__div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: -2.72rem 1rem 0 0;
+}
+.secao-conteudo__secao-descricao__div__paragrafo-dados-sensiveis {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.secao-conteudo__secao-descricao__titulo, .secao-conteudo__secao-detalhes__titulo, .secao-conteudo__secao-responsavel__div-inicio__titulo, .secao-conteudo__secao-tecnico__div-sustentacao__div-inicio__titulo {
+  font-size: 18px;
+  margin-bottom: .5rem
+}
+.secao-conteudo__secao-descricao__div__botao-editar, .secao-conteudo__secao-detalhes__div__botao-editar, .secao-conteudo__secao-responsavel__div__botao-editar, .secao-conteudo__secao-tecnico__div__botao-editar, .secao-conteudo__secao-campos__lista__item__div-tipo__botao {
+  border: none;
+  background: transparent;
+}
+.secao-conteudo__secao-descricao__div__botao-editar:hover, .secao-conteudo__secao-detalhes__div__botao-editar:hover, .secao-conteudo__secao-responsavel__div__botao-editar:hover, .secao-conteudo__secao-tecnico__div__botao-editar:hover {
+  cursor: pointer;
+}
+.secao-conteudo__secao-descricao__div__botao-editar__imagem, .secao-conteudo__secao-detalhes-editar__imagem, .secao-conteudo__secao-responsavel__div__botao-editar__imagem, .secao-conteudo__secao-tecnico__div__botao-editar__imagem, .secao-conteudo__secao-campos__lista__item__div-tipo__botao__imagem {
+  width: 25px;
+}
+.secao-conteudo__secao-descricao__div, .secao-conteudo__secao-detalhes__div, .secao-conteudo__secao-responsavel__div, .secao-conteudo__secao-tecnico__div {
+  background: #F3F4F9;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+}
+.secao-conteudo__secao-descricao__div, .secao-conteudo__secao-detalhes__div {
+  min-width: 30rem;
+  min-height: 11rem;
+}
+.secao-conteudo__secao-descricao, .secao-conteudo__secao-detalhes {
+  width: 45%;
+}
+.secao-conteudo__secao-descricao__div {
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.secao-conteudo__secao-responsavel__div {
+  margin-top: 2.2rem;
+  padding: .5rem 1rem;
+  width: 35rem;
+  margin-left: 2rem;
+}
+.secao-conteudo__secao-tecnico__div {
+  padding: .5rem 1rem;
+  width: 35rem;
+  margin-left: 2rem;
+}
+.div-editar {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.secao-conteudo__secao-descricao__div__paragrafo {
+  margin-bottom: 3rem;
+}
+.secao-conteudo__secao-descricao__div__paragrafo-dados-sensiveis {
+  font-weight: bold;
+}
+.secao-conteudo__secao-detalhes__titulo, .secao-conteudo__secao-responsavel__div-inicio__titulo, .secao-conteudo__secao-tecnico__div-atualizacao__titulo {
+  margin: 2.2rem 0 .5rem 0;
+}
+.secao-conteudo__secao-detalhes__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 19rem;
+}
+.secao-conteudo__subtitulo {
+  font-size: 17px;
+}
+.secao-conteudo__secao-detalhes__div__input, .secao-conteudo__secao-responsavel__div__label__input, .secao-conteudo__secao-tecnico__div__label__input, .secao-conteudo__secao-tecnico__div-atualizacao__input {
+  background: none;
+  border: none;
+  color:rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+.secao-conteudo__secao-detalhes__div-input, .secao-conteudo__secao-responsavel__div-input, .secao-conteudo__secao-tecnico__div-atualizacao__div-input {
+  margin-bottom: 1.5rem;
+}
+.secao-conteudo__secao-responsavel__div-inicio__titulo {
+  margin: 0rem 0.5rem 1rem 0
+}
+.secao-conteudo__secao-responsavel__div__label, .secao-conteudo__secao-tecnico__div__label, .secao-conteudo__secao-tecnico__div-atualizacao__label {
+  margin: .5rem 0 0 1rem;
+}
+.secao-conteudo__secao-tecnico__div {
+  margin-top: .5rem;
+}
+.secao-conteudo__secao-tecnico__div-input {
+  margin-bottom: 1rem;
+}
+.secao-conteudo__secao-tecnico__div-atualizacao__titulo {
+  margin-bottom: .8rem;
+}
+.secao-conteudo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  align-content: center;
+  justify-content: center;
+  margin-top: 3rem;
+  gap: 3rem;
+}
