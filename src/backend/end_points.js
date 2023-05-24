@@ -17,7 +17,7 @@ const port = 3000; // Armazena a porta que será utilizada para rodar o servidor
 
 const DBPATH = './data/db_projeto.db'; // Armazena o caminho do arquivo que contém o banco de dados do projeto
 
-var caminho = new sqlite3.Database(DBPATH); // // Cria e armazena uma conexão com o banco de dados SQLite no caminho especificado
+// var caminho = new sqlite3.Database(DBPATH); // Cria e armazena uma conexão com o banco de dados SQLite no caminho especificado
 
 // Abre conexão com o banco de dados SQLite
 const db = new sqlite3.Database(DBPATH, sqlite3.OPEN_READWRITE, err => {
@@ -41,35 +41,73 @@ app.get('/tabelas', (req, res) => {
 
 app.post('/solicitar', urlencodedParser, (req, res) => {
   const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
-  const {id_usuario, data, sql_code} = req.body
+  const {id_usuario, sql_code} = req.body
+  var data = new Date();
+  var data = new Date().toISOString().slice(0, 19).replace("T", " ");
+  console.log(data);
   const valores = [id_usuario, data, sql_code]
 
   db.run(sql, valores, (err) => {
     if (err) {
       throw err
     } else {
-      console.log(sql)
       res.status(200).send("Tabela inserida")
     }
   })
 })
 
+app.get('/solicitacoes', (req, res) => {
+  const sql = "SELECT * FROM solicitacoes"
+  db.all(sql, (err, rows) => {
+    if (err) {
+      throw err
+    } else{ 
+      res.json(rows)
+    }
+  })
+})
+
+app.delete('/recusar', urlencodedParser, (req, res) => {
+  var sql = `DELETE FROM solicitacoes WHERE id_solicitacao=${req.body.id_solicitacao}`
+  db.run(sql, (err) => {
+    if (err) {
+      throw err
+    } else{ 
+      res.json('Solicitação recusada com sucesso')
+    }
+  })
+})
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
 app.post('/atualizar', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
   var sql = `SELECT sql_code FROM solicitacoes WHERE id_solicitacao = ${req.body.id_solicitacao}`
-  console.log(sql)
-  console.log(sql);
-  db.get(sql, (err, rows) => {
+  db.all(sql, (err, rows) => {
     if (err) {
       throw err;
-    } else {
-      res.status(200).send(sql)
+    }else {      
+      const {sql_code} = rows[0]
+      console.log(sql_code)
+      db.run(sql_code, (err) => {
+        if (err) {
+          throw err
+        } else {
+
+          db.run(`DELETE FROM solicitacoes WHERE id_solicitacao=${req.body.id_solicitacao}`, (err) => {
+            if (err) {
+              throw err
+            } else {
+              res.send('Pedido executado')
+            }
+          })
+        }
+      })
     }
   });
-  res.write('<p>Campo Atualizado com sucesso!</p>');
+
+  
+
+
   db.close();
 });
 
@@ -96,6 +134,7 @@ app.get('/campos', (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
   const sql = `SELECT nome, descricao, tipo FROM campo`;
+  res.setHeader('Access-Control-Allow-Origin', '*');
   db.all(sql, [], (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -104,7 +143,6 @@ app.get('/campos', (req, res) => {
       res.json(rows);
     }
   });
-  db.close();
 });
 
 // Endpoint para filtrar os campos de acordo com seu tipo
@@ -354,4 +392,3 @@ app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
-
