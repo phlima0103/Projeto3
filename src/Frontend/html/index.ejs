@@ -56,7 +56,32 @@
         <button class="secao-pesquisa__div-pesquisa__botao botao-favorito"> <img src="../assets/img/favorito.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px"></button>
       </div>
 
-      <!-- HTML Ana -->
+      <section class="secao-tabelas">
+        <ul class="secao-tabelas__lista" data-container>
+          <template data-template>
+            <li class="secao-tabelas__lista__item">
+              <input type="hidden" readonly id="id_tabela" value="" data-id-tabela>
+              <div class="secao-tabelas__lista__item__div-titulo">
+                <h2 class="secao-tabelas__lista__item__div-titulo__titulo" data-nome></h2>
+              </div>
+              <div class="secao-tabelas__lista__item__div-informacoes">
+                <div class="secao-tabelas__lista__item__div-informacoes__div-detalhes">
+                  <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto" data-assunto></p>
+                  <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem" data-origem></p>
+                </div>
+                <div class="secao-tabelas__lista__item__div-informacoes__div-icones">
+                  <button class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito"><img src="../assets/img/favorito.svg" height="30px" width="30px"></button>
+                  <button class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel">
+                    <img src="../assets/img/critico.svg" class="icon" data-icon>
+                  </button>
+                </div>
+              </div>
+              <p class="secao-tabelas__lista__item__paragrafo" data-desc></p>
+            </li>
+          </template>
+        </ul>
+      </section>
+      
     </section>
   </main>
 
