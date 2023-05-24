@@ -283,6 +283,87 @@ html, body {
   background: transparent url("../img/filtroPreenchido.svg") no-repeat;
 }
 
+.secao-tabelas__lista {
+  display: none;
+}
+.secao-tabelas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+.secao-tabelas__lista__item  {
+  border: none;
+  background-color: #FFFFFF;
+  padding: 1rem 1rem 1.5rem 1rem;
+  width: 86vw;
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background: #F3F4F9;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 1.5rem;
+  margin-bottom: 5rem;
+}
+.secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto {
+  color: #FFFFFF;
+  background: #4DA9FF;
+}
+.secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem {
+  background: #FFFFFF;
+  color: #4DA9FF;
+  border: solid 1px #4DA9FF;
+}
+.secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto, .secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem {
+  font-size: 12px;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 5px;
+}
+.secao-tabelas__lista__item__div-titulo {
+  position: absolute;
+  margin-top: -3.48rem;
+  background: #F3F4F9;
+  padding: 0.5rem 1rem 1.5rem 1rem;
+  margin-left: -1rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  box-shadow: 2px -1px 4px rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+.hide {
+  display: none;
+}
+.secao-tabelas__lista__item__div-titulo__titulo {
+  font-weight: 500;
+  font-size: 16px;
+}
+.secao-tabelas__lista__item__paragrafo {
+  line-height: 1.7rem;
+  font-size: 14.5px;
+}
+.secao-tabelas__lista__item__div-informacoes__div-detalhes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito, .secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.secao-tabelas__lista__item__div-informacoes__div-icones {
+  display: flex;
+  align-items: center;
+}
+.secao-tabelas__lista__item__div-informacoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -1rem;
+}
+
 /* Parte de TABS */
 .secao__div-tabs {
   position: relative;
