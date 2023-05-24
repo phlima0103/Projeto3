@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/estilo.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">   
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabela</title>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/estilo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Ubuntu&display=swap" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Pesquisa</title>
-</head>
+  </head>
 <body>
   <header class="cabecalho">
     <nav class="cabecalho__navegacao">
@@ -43,21 +43,21 @@
       </ul>
     </nav>
   </header>
-  <a class="div-voltar" href="/" id="voltar">
-    <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem">
-  </a>
 
-  <main class="principal-tabelas">
-    <section id="secao-input" class="secao-pesquisa">
-     <h1 class="secao-pesquisa__titulo"><span class="secao-pesquisa__titulo__span">PAN</span>PEDIA</h1>
-      <div class="secao-pesquisa__div-pesquisa">
-        <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input" data-input-pesquisa>
-        <button class="secao-pesquisa__div-pesquisa__botao botao-filtro"> <img src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem"></button>
-        <button class="secao-pesquisa__div-pesquisa__botao botao-favorito"> <img src="../assets/img/favorito.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px"></button>
-      </div>
+  <main class="principal-detalhes-tabelas">
+    <a class="div-voltar" href="/" id="voltar">
+      <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem">
+    </a>
 
-      <!-- HTML Ana -->
-    </section>
+    <div class="secao__div-tabs">
+      <!--HTML Guilherme -->
+
+      <!--HTML Raphaela -->
+
+      <!--HTML Thiago -->
+
+      <input type="button" name="tabs" class="secao-botoes__input-acesso" value="Solicitar Acesso" id="acesso"/>
+    </div>
   </main>
 
   <footer class="rodape">
@@ -65,7 +65,8 @@
     <p class="rodape__paragrafo">&copy; Copyright 2023 - Desenvolvido por <a href="" class="rodape__paragrafo__link">Agilify</a></p>
     <img src="../assets/img/logoProjeto.svg" alt="Logo do grupo dos alunos do Inteli, o Project Athena" class="rodape__imagem-logo-grupo">
   </footer>
-  <script type="text/javascript" src="../assets/js/pesquisaTabelas.js"></script>
-  <script src="../assets/js/manipulaItens.js" defer></script>
+  <script src="../assets/js/manipulaItens.js"></script>
+  <script src="../assets/js/preencheInformacoes.js" defer></script>
+  <script src="../assets/js/pesquisaCampos.js"></script>
 </body>
 </html>
