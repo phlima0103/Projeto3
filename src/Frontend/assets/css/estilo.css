@@ -219,3 +219,58 @@ html, body {
   height: 60%;
   margin-left: 1rem;
 }
+
+/* Página principal */
+.secao-pesquisa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: top 0.5s;
+}
+.secao-pesquisa__titulo {
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  font-size: 70px;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.secao-pesquisa__titulo__span {
+  color: #4DA9FF;
+}
+.secao-pesquisa__div-pesquisa__input {
+  background: #8390A6 url("../img/pesquisa.svg") no-repeat left padding-box;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+  border: none;
+  width: 550px;
+  height: 40px;
+  padding-left: 2.5rem;
+  outline: none;
+  color: #EAF0F8;
+}
+.secao-pesquisa__div-pesquisa__input::placeholder {
+  color: #CDD3DB ;
+}
+.secao-pesquisa__div-pesquisa {
+  display: flex;
+  align-items: center;
+}
+.secao-pesquisa__div-pesquisa__botao {
+  background: none;
+  border: none;
+  outline: none;
+  margin-left: 0.5rem;
+  transition: all ease .2s;
+}
+.botao-favorito:hover {
+  cursor: pointer;
+  background: transparent url("../img/favoritoPreenchido.svg") no-repeat left;
+}
+.botao-filtro:hover {
+  cursor: pointer;
+  background: transparent url("../img/filtroPreenchido.svg") no-repeat;
+}
