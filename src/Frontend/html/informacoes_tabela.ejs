@@ -155,7 +155,48 @@
             </section>
       </section>
 
-      <!--HTML Raphaela -->
+      <input type="radio" name="tabs" class="secao-botoes__input" id="campos"/>
+      <label for="campos" class="secao-botoes__label" id="campos-label">Campos</label>
+      <section class="secao-conteudo">
+        <section class="secao-conteudo-campos">
+          <div class="secao-conteudo__div">
+            <h2 class="secao-conteudo__subtitulo">Informações de campos da tabela</h2>
+              <div class="secao-conteudo__div-pesquisa">
+                <select name="tipo-campo" id="tipo-campo" class="secao-conteudo__div-pesquisa__select">
+                  <option value="tipo-campo" class="secao-conteudo__div-pesquisa__select__opcao" selected disabled>Tipo Campo</option>
+                </select>
+                <input type="search" name="pesquisa-campo" id="pesquisa-campo" placeholder="Digite o campo desejado" class="secao-conteudo__div-pesquisa__input" data-input-pesquisa>
+              </div>
+          </div>
+        
+          <section class="secao-conteudo__secao-campos">
+            <ul class="secao-conteudo__secao-campos__lista" data-container>
+              <template data-template>
+                <li class="secao-conteudo__secao-campos__lista__item card">   
+                  <div class="secao-conteudo__secao-campos__lista__item__div-editar">
+                    <button class="secao-conteudo__secao-campos__lista__item__div-tipo__botao">
+                      <img src="../assets/img/edicao.svg" alt="Ícone de edição" class="secao-conteudo__secao-campos__lista__item__div-tipo__botao__imagem">
+                    </button>
+                  </div>           
+                  <div class="secao-conteudo__secao-campos__lista__item__div-texto">
+                    <div class="secao-conteudo__secao-campos__lista__item__div-tipo">
+                      <p class="secao-conteudo__secao__campos__lista__item__div-tipo__paragrafo" data-tipo>
+                        String
+                      </p>
+                    </div>
+                    <h3 class="secao-conteudo__secao-campos__lista__item__div-texto__titulo" data-nome>
+                      Título do Campo
+                    </h3>
+                    <p class="secao-conteudo__secao-campos__lista__item__div-texto__paragrafo" data-desc>
+                      Texto com metadado descritivo da tabela indicando quais as funções que ela exerce dentro da empresa
+                    </p>
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </section>
+        </section>
+      </section>
 
       <!--HTML Thiago -->
 
