@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">   
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Pesquisa</title>
+</head>
+<body>
+  <header class="cabecalho">
+    <nav class="cabecalho__navegacao">
+      <input type="checkbox" class="cabecalho__navegacao__input" id="input-menu">
+      <div class="cabecalho__navegacao__div-icone" id="div-menu">
+        <span class="cabecalho__navegacao__span"></span>
+        <span class="cabecalho__navegacao__span"></span>
+        <span class="cabecalho__navegacao__span"></span>
+      </div>
+      <ul class="cabecalho__navegacao__lista">
+        <li class="cabecalho__navegacao__lista__item">
+          <a href="/" class="cabecalho__navegacao__lista__item__link">Home</a>
+        </li>
+        <li class="cabecalho__navegacao__lista__item">
+          <a href="" class="cabecalho__navegacao__lista__item__link">Biblioteca</a>
+        </li>
+        <li class="cabecalho__navegacao__lista__item">
+          <a href="" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
+        </li>
+        <li class="cabecalho__navegacao__lista__item">
+          <a href="" class="cabecalho__navegacao__lista__item__link">Favoritos</a>
+        </li>
+        <li class="cabecalho__navegacao__lista__item">
+          <select name="pasta" id="pasta" class="cabecalho__navegacao__lista__item__select">
+            <option value="Suas Pastas" class="cabecalho__navegacao__lista__item__select__opcao" selected disabled>Suas Pastas</option>
+            <option value="Pasta 1" class="cabecalho__navegacao__lista__item__select__opcao">Pasta 1</option>
+          </select>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <a class="div-voltar" href="/" id="voltar">
+    <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem">
+  </a>
+</body>
+</html>
