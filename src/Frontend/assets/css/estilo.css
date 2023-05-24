@@ -628,3 +628,96 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 .secao-conteudo__secao-campos__lista__item__div-tipo {
   margin-right: 3rem;
 }
+
+.secao-conteudo-feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5rem;
+  justify-content: center;
+}
+.secao-feedback__subtitulo {
+  font-size: 17px;
+}
+.secao-feedback__estrela {
+  background: #F3F4F9;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border: none;
+  width: 300px;
+  height: 37px;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.secao-feedback__estrela-1 {
+  background: url("../img/estrela.svg") no-repeat left;
+  width: 40px;
+  height: 44px;
+  left: 60px;
+}
+.secao-feedback__estrela-2 {
+  background: url("../img/estrela.svg") no-repeat left;
+  width: 40px;
+  height: 44px;
+  left: 95px;
+}
+.secao-feedback__estrela-3 {
+  background: url("../img/estrela.svg") no-repeat left;
+  width: 40px;
+  height: 44px;
+  left: 130px;
+}
+.secao-feedback__estrela-4 {
+  background: url("../img/estrela.svg") no-repeat left;
+  width: 40px;
+  height: 44px;
+  left: 165px;
+}
+.secao-feedback__estrela-5{
+  background: url("../img/estrela.svg") no-repeat left;
+  width: 40px;
+  height: 44px;
+  left: 200px;
+}
+.secao-feedback__label {
+  font-size: 17px;
+  font-weight: bold;
+}
+.secao-feedback__input{
+  background: #F3F4F9;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border: none;
+  width: 70rem;
+  height: 263.11px;
+  padding: 1.5rem;
+  font-size: 15px;
+  outline: none;
+}
+.secao-feedback__icone {
+  background: url("../img/iconeInformacoes.svg") no-repeat center;
+  width: 40px;
+  height: 44px;
+}
+.secao-feedback__botao{
+  width: 250px;
+  height: 45px;
+  background-color: #4DA9FF;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  color: #FFFFFF;
+}
+.secao-feedback__comentario__div-label {
+  display: flex;
+  align-items: center;
+  margin-top: 3rem;
+}
+.secao-feedback__div-botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
