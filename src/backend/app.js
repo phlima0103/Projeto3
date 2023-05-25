@@ -78,6 +78,44 @@ app.get('/tabelas', (req, res) => {
   });
 });
 
+app.post('/solicitar', urlencodedParser, (req, res) => {
+  const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
+  const {id_usuario, sql_code} = req.body
+  var data = new Date();
+  var data = new Date().toISOString().slice(0, 19).replace("T", " ");
+  console.log(data);
+  const valores = [id_usuario, data, sql_code]
+
+  db.run(sql, valores, (err) => {
+    if (err) {
+      throw err
+    } else {
+      res.status(200).send("Tabela inserida")
+    }
+  })
+})
+
+app.get('/solicitacoes', (req, res) => {
+  const sql = "SELECT * FROM solicitacoes"
+  db.all(sql, (err, rows) => {
+    if (err) {
+      throw err
+    } else{ 
+      res.json(rows)
+    }
+  })
+})
+
+app.delete('/recusar', urlencodedParser, (req, res) => {
+  var sql = `DELETE FROM solicitacoes WHERE id_solicitacao=${req.body.id_solicitacao}`
+  db.run(sql, (err) => {
+    if (err) {
+      throw err
+    } else{ 
+      res.json('Solicitação recusada com sucesso')
+    }
+  })
+
 
 //Endpoint para listar todas as tabelas a partir do id
 app.get('/tabela', (req, res) => {
@@ -109,20 +147,32 @@ app.post('/solicitar', (req, res) => {
 
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
-app.put('/atualizar', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = req.body.sql_code
-  
-  console.log(sql);
-  var db = new sqlite3.Database(DBPATH);
-  db.run(sql, [], err => {
+app.post('/atualizar', urlencodedParser, (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  var sql = `SELECT sql_code FROM solicitacoes WHERE id_solicitacao = ${req.body.id_solicitacao}`
+  db.all(sql, (err, rows) => {
     if (err) {
       throw err;
+    }else {      
+      const {sql_code} = rows[0]
+      console.log(sql_code)
+      db.run(sql_code, (err) => {
+        if (err) {
+          throw err
+        } else {
+
+          db.run(`DELETE FROM solicitacoes WHERE id_solicitacao=${req.body.id_solicitacao}`, (err) => {
+            if (err) {
+              throw err
+            } else {
+              res.send('Pedido executado')
+            }
+          })
+        }
+      })
     }
-    res.end();
   });
-  res.write('<p>Campo Atualizado com sucesso!</p>');
+});
   db.close();
 });
 
