@@ -78,6 +78,18 @@ app.get('/tabelas', (req, res) => {
   });
 });
 
+//Endpoint para listar todas as tabelas a partir do id
+app.get('/tabela', (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  db.all('SELECT * FROM tabela WHERE id= ?', [req.query.id], (err, rows) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    res.json(rows);
+  });
+});
+
 app.post('/solicitar', urlencodedParser, (req, res) => {
   const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
   const {id_usuario, sql_code} = req.body
@@ -93,7 +105,7 @@ app.post('/solicitar', urlencodedParser, (req, res) => {
       res.status(200).send("Tabela inserida")
     }
   })
-})
+});
 
 app.get('/solicitacoes', (req, res) => {
   const sql = "SELECT * FROM solicitacoes"
@@ -104,7 +116,7 @@ app.get('/solicitacoes', (req, res) => {
       res.json(rows)
     }
   })
-})
+});
 
 app.delete('/recusar', urlencodedParser, (req, res) => {
   var sql = `DELETE FROM solicitacoes WHERE id_solicitacao=${req.body.id_solicitacao}`
@@ -114,18 +126,6 @@ app.delete('/recusar', urlencodedParser, (req, res) => {
     } else{ 
       res.json('Solicitação recusada com sucesso')
     }
-  })
-
-
-//Endpoint para listar todas as tabelas a partir do id
-app.get('/tabela', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  db.all('SELECT * FROM tabela WHERE id= ?', [req.query.id], (err, rows) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    res.json(rows);
   });
 });
 
@@ -173,8 +173,7 @@ app.post('/atualizar', urlencodedParser, (req, res) => {
     }
   });
 });
-  db.close();
-});
+
 
 
 // Endpoint para filtrar as tabelas de acordo com a sua categoria
@@ -206,7 +205,6 @@ app.get('/campos', (req, res) => {
       res.json(rows);
     }
   });
-  db.close();
 });
 
 // Endpoint para filtrar os campos de acordo com seu tipo
@@ -231,7 +229,7 @@ app.post('/campo/atualizar', urlencodedParser, (req, res) => {
   sql = `UPDATE campo SET nome='${req.body.nome}', tipo='${req.body.tipo}', descricao='${req.body.descricao}' 
   WHERE id_tabela='${req.body.id_tabela}'`;
   console.log(sql);
-  var db = new sqlite3.Database(DBPATH);
+  db = new sqlite3.Database(DBPATH);
   db.run(sql, [], err => {
     if (err) {
       throw err;
@@ -239,7 +237,6 @@ app.post('/campo/atualizar', urlencodedParser, (req, res) => {
     res.end();
   });
   res.write('<p>Campo Atualizado com sucesso!</p>');
-  db.close();
 });
 
 // Endpoint para filtrar os campos de acordo com a sua categoria
@@ -255,7 +252,6 @@ app.get('/campo/tipo', (req, res) => {
       res.json(rows);
     }
   });
-  db.close();
 });
 
 /*********** ENDPOINTS DE PASTAS ***********/
@@ -283,7 +279,6 @@ app.post('/criarpasta', urlencodedParser, (req, res) => {
     const pastaId = this.lastID;
     res.status(201).json({ nome, id_usuario });
   });
-  db.close();
 });
 
 // Endpoint para inserir tabela na pasta
@@ -300,7 +295,6 @@ app.post('/pasta/inserirtabela', urlencodedParser, (req, res) => {
     }
   });
   res.write('<p>Tabela inserida com sucesso!</p>');
-  db.close();
   res.end();
 });
 
@@ -317,7 +311,6 @@ app.get('/pastas', (req, res) => {
       res.json(rows);
     }
   });
-  db.close();
 });
 
 // Endpoint que lista todas as tabelas dentro das pastas criadas pelo usuário
@@ -333,7 +326,6 @@ app.get('/pastas/tabelas', (req, res) => {
       res.json(rows);
     }
   });
-  db.close();
 });
 
 //Endpoint de exclusão de uma pasta
@@ -341,7 +333,7 @@ app.get('/pasta/delete', urlencodedParser, (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
   sql = `DELETE FROM pasta WHERE id_pasta='${req.query.id_pasta}'`;
-  var db = new sqlite3.Database(DBPATH);
+  db = new sqlite3.Database(DBPATH);
   db.run(sql, [], err => {
     if (err) {
       throw err;
@@ -349,7 +341,6 @@ app.get('/pasta/delete', urlencodedParser, (req, res) => {
     res.write('<p>Pasta Removida com sucesso!</p>');
     res.end();
   });
-  db.close();
 });
 
 //Endpoint de exclusão de uma tabela dentro de uma pasta
@@ -382,14 +373,13 @@ app.get('/visaogeral', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   sql = `SELECT * FROM tabela WHERE id='${req.query.id}'`;
   console.log(sql);
-  var db = new sqlite3.Database(DBPATH);
+  db = new sqlite3.Database(DBPATH);
   db.all(sql, [], (err, rows) => {
     if (err) {
       throw err;
     }
     res.json(rows);
   });
-  db.close();
 });
 
 
@@ -407,7 +397,6 @@ app.get('/favoritos', (req, res) => {
       res.json(rows);
     }
   });
-  db.close();
 });
 
 //Endpoint para inserir tabela aos favoritos
@@ -424,7 +413,6 @@ app.post('/favoritos/inserirtabela', urlencodedParser, (req, res) => {
   });
   res.write('<p>Tabela inserida com sucesso!</p>');
   res.end();
-  db.close();
 });
 
 
