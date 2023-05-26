@@ -20,7 +20,7 @@ const sqlite3 = require('sqlite3').verbose();
 const hostname = '127.0.0.1'; 
 
 // Armazena a porta que será utilizada para rodar o servidor web
-const port = 3000; 
+const port = 1234; 
 
 // Armazena o caminho do arquivo que contém o banco de dados do projeto
 const DBPATH = './backend/data/db_projeto.db'; 

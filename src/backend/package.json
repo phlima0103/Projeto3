@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon ./backend/end_points.js"
+    "start": "nodemon ./backend/app.js"
   },
   "dependencies": {
     "ejs": "^3.1.9",
