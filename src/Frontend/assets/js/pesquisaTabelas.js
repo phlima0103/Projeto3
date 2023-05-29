@@ -10,6 +10,8 @@ let tabelas = [];
 // Armazena o objeto Fuse.js
 let fuse;
 
+var categorias = ['banco-digital']
+
 // Inicializa o Fuse.js com os dados
 function inicializaFuze(dados) {
   // Define as configurações para o Fuse.js
@@ -36,10 +38,14 @@ function pesquisaDifusa(valor) {
   // Exibe os itens correspondentes nos resultados da pesquisa
   for (const { item, score } of resultados) {
     // Remove a classe "hide" do elemento
-    item.element.classList.remove("hide");
-    
-    // Adiciona o elemento ao conjunto de elementos visíveis
-    visibilidadeItem.add(item.element);
+    if (categorias.includes(item.categoria) || categorias[0] === undefined){
+      console.log(categorias[0])
+      console.log('ok')
+      item.element.classList.remove("hide");
+      
+      // Adiciona o elemento ao conjunto de elementos visíveis
+      visibilidadeItem.add(item.element);
+    }
   }
 
   // Oculta os itens que não estão nos resultados da pesquisa
