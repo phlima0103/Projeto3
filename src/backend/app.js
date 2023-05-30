@@ -55,11 +55,9 @@ app.get('/', (req, res) => {
   res.render('html/index');
 });
 
+// Endpoint para renderizar a página de detalhes das tabelas
 app.get('/informacoes_tabela', (req, res) => {
-  const idTabela = req.query.id; // Obtém o ID da tabela da query string
-
-  // Execute a lógica necessária para obter as informações específicas da tabela
-  // com base no ID fornecido.
+  const idTabela = req.query.id; // Obtém o ID da tabela da query string.
 
   // Renderize o arquivo EJS e envie a resposta com os dados da tabela
   res.render('html/informacoes_tabela', { idTabela });
@@ -384,6 +382,14 @@ app.get('/visaogeral', (req, res) => {
 
 
 /*********** ENDPOINTS DE FAVORITOS ***********/
+// Endpoint para renderizar a página de favoritos
+app.get('/favoritos', (req, res) => {
+  const idTabela = req.query.id; // Obtém o ID da tabela da query string
+
+  // Renderize o arquivo EJS e envie a resposta com os dados da tabela
+  res.render('html/favoritos', { idTabela });
+});
+
 //Endpoint de listagem das informacoes de cada tabela
 app.get('/favoritos', (req, res) => {
   res.statusCode = 200;

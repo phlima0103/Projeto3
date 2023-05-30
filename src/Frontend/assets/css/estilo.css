@@ -178,6 +178,11 @@ html, body {
   cursor: pointer;
 }
 
+.cabecalho__div-voltar__imagem-favoritos {
+  display: flex;
+  margin: 1rem;
+}
+
 .cabecalho__div-voltar__imagem {
   display: none;
 }
@@ -198,6 +203,10 @@ html, body {
   align-items: center;
   justify-content: space-between;
   align-content: center;
+}
+
+.rodape-favoritos {
+  position: absolute;
 }
 
 .rodape__imagem-logo-grupo {
@@ -801,4 +810,20 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   align-items: center;
   justify-content: center;
   margin-top: 2rem;
+}
+
+/* Tela de Favoritos */
+.secao-pesquisa-favoritos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-favoritos {
+  margin-top: .5rem;
+}
+
+.titulo-favoritos {
+  font-size: 60px;
 }
