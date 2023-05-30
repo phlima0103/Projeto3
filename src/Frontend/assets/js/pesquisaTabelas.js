@@ -10,19 +10,16 @@ let tabelas = [];
 // Armazena o objeto Fuse.js
 let fuse;
 
-var categorias = ['banco-digital']
-
 // Inicializa o Fuse.js com os dados
 function inicializaFuze(dados) {
   // Define as configurações para o Fuse.js
   const opcoes = {
     keys: ["id", "nome", "categoria", "descricao", "owner", "defasagem", "database", "caminho", "verificacao_governanca", "dado_sensivel"],
     includeScore: true,
-    threshold: 0.3, 
+    threshold: 0.3,
     ignoreLocation: true,
     minMatchCharLength: 2,
   };
-
   // Inicializa o Fuse.js com os dados e configurações
   fuse = new Fuse(dados, opcoes);
 }
@@ -31,23 +28,15 @@ function inicializaFuze(dados) {
 function pesquisaDifusa(valor) {
   // Executa a pesquisa difusa
   const resultados = fuse.search(valor);
-
   // Armazena os elementos visíveis
   const visibilidadeItem = new Set();
-
   // Exibe os itens correspondentes nos resultados da pesquisa
   for (const { item, score } of resultados) {
     // Remove a classe "hide" do elemento
-    if (categorias.includes(item.categoria) || categorias[0] === undefined){
-      console.log(categorias[0])
-      console.log('ok')
-      item.element.classList.remove("hide");
-      
-      // Adiciona o elemento ao conjunto de elementos visíveis
-      visibilidadeItem.add(item.element);
-    }
+    item.element.classList.remove("hide");
+    // Adiciona o elemento ao conjunto de elementos visíveis
+    visibilidadeItem.add(item.element);
   }
-
   // Oculta os itens que não estão nos resultados da pesquisa
   for (const tabela of tabelas) {
     // Verifica se o elemento não está no conjunto de elementos visíveis
@@ -59,7 +48,6 @@ function pesquisaDifusa(valor) {
   // Atualiza a quantidade de resultados da pesquisa
   quantidade.textContent = resultados.length;
 }
-
 // Evento acionado quando houver alterações no campo de entrada
 inputPesquisa.addEventListener("input", (e) => {
   // Obtém o valor do campo de entrada
@@ -72,7 +60,7 @@ inputPesquisa.addEventListener("input", (e) => {
 fetch("/tabelas")
   .then((res) => res.json())
   .then((data) => {
-    // Mapeia os dados da tabela para criar elementos de cartão e armazenar informações 
+    // Mapeia os dados da tabela para criar elementos de cartão e armazenar informações
     tabelas = data.map((tabela) => {
       // Preenche os elementos do DOM com as informações da tabela
       const card = template.content.cloneNode(true).children[0];
@@ -87,7 +75,6 @@ fetch("/tabelas")
       origem.textContent = tabela.database;
       id.value = tabela.id;
       container.append(card);
-
       // Retorna um objeto com as informações da tabela
       return {
         nome: tabela.nome,
