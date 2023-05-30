@@ -57,7 +57,8 @@ app.get('/', (req, res) => {
 
 // Endpoint para renderizar a página de detalhes das tabelas
 app.get('/informacoes_tabela', (req, res) => {
-  const idTabela = req.query.id; // Obtém o ID da tabela da query string.
+   // Obtém o ID da tabela da query string
+  const idTabela = req.query.id;
 
   // Renderize o arquivo EJS e envie a resposta com os dados da tabela
   res.render('html/informacoes_tabela', { idTabela });
