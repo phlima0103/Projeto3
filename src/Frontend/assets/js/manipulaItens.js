@@ -30,12 +30,19 @@ $(document).ready(function () {
   });
 
   // Evento acionado quando um item da lista é clicado
-  $(document).on('click', '.secao-tabelas__lista__item', function (event) {
+  $(document).on('click', '.secao-tabelas__lista__item__div-paragrafo', function (event) {
     // Obtém o ID da tabela associado ao item clicado
     var idTabela = $(this).find('[data-id-tabela]').val();
     console.log('ID da tabela clicada:', idTabela);
     var url = 'informacoes_tabela?id=' + idTabela;
     // Redireciona para a URL com base no ID da tabela
+    window.location.href = url;
+  });
+
+  $(document).on('click', '.secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito', function (event) {
+    var idTabelaFavorito = $(this).find('[data-id-tabela-favorito]').val();
+    console.log('ID da tabela clicada:', idTabelaFavorito);
+    var url = '/favoritos/inserirTabela?id_tabela=' + idTabelaFavorito;
     window.location.href = url;
   });
 

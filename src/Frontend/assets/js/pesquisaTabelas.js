@@ -68,12 +68,14 @@ fetch("/tabelas")
       const assunto = card.querySelector("[data-assunto]");
       const desc = card.querySelector("[data-desc]");
       const origem = card.querySelector("[data-origem]");
-      const id = card.querySelector("[data-id-tabela]");
+      const idTabela = card.querySelector("[data-id-tabela]");
+      const idTabelaFavorito = card.querySelector("[data-id-tabela-favorito]");
       nome.textContent = tabela.nome;
       assunto.textContent = tabela.categoria;
       desc.textContent = tabela.descricao;
       origem.textContent = tabela.database;
-      id.value = tabela.id;
+      idTabela.value = tabela.id;
+      idTabelaFavorito.value = tabela.id;
       container.append(card);
       // Retorna um objeto com as informações da tabela
       return {
@@ -84,7 +86,8 @@ fetch("/tabelas")
         defasagem: tabela.defasagem,
         database: tabela.database,
         caminho: tabela.caminho,
-        id: tabela.id,
+        idTabelaFavorito: tabela.id,
+        idTabela: tabela.id,
         verificacao_governanca: tabela.verificacao_governanca,
         element: card,
       };

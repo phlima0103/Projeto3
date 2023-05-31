@@ -65,7 +65,6 @@ app.get('/informacoes_tabela', (req, res) => {
 });
 
 
-
 /********************* ENDPOINTS DA TABELA ********************/
 //Endpoint para listar todas as tabelas
 app.get('/tabelas', (req, res) => {
@@ -364,7 +363,6 @@ app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
 });
 
 
-
 /*********** ENDPOINTS DE VISAO GERAL ***********/
 //Endpoint de listagem das informacoes de cada tabela
 app.get('/visaogeral', (req, res) => {
@@ -383,46 +381,6 @@ app.get('/visaogeral', (req, res) => {
 
 
 /*********** ENDPOINTS DE FAVORITOS ***********/
-// Endpoint para renderizar a página de favoritos
-app.get('/favoritos', (req, res) => {
-  const idTabela = req.query.id; // Obtém o ID da tabela da query string
-
-  // Renderize o arquivo EJS e envie a resposta com os dados da tabela
-  res.render('html/favoritos', { idTabela });
-});
-
-//Endpoint de listagem das informacoes de cada tabela
-app.get('/favoritos', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM favorito`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send('Erro ao buscar tabelas.');
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
-//Endpoint para inserir tabela aos favoritos
-app.post('/favoritos/inserirtabela', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql =
-    `INSERT INTO favorito (data, id_usuario, id_tabela) VALUES ('${req.body.data}', '${req.body.id_usuario}', '${req.body.id_tabela}' )`;
-  console.log(sql);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-  });
-  res.write('<p>Tabela inserida com sucesso!</p>');
-  res.end();
-});
-
-
 //Endpoint para deletar tabela dos favoritos
 app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

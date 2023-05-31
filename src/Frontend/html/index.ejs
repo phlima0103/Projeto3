@@ -53,14 +53,13 @@
       <div class="secao-pesquisa__div-pesquisa">
           <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input" data-input-pesquisa>
           <button class="secao-pesquisa__div-pesquisa__botao botao-filtro"> <img src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem"></button>
-          <a class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/favoritos"> <img src="../assets/img/favorito.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px"></a>
+          <a class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/tabelasFavoritadas"> <img src="../assets/img/favorito.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px"></a>
       </div>
 
       <section class="secao-tabelas">
         <ul class="secao-tabelas__lista" data-container>
           <template data-template>
             <li class="secao-tabelas__lista__item">
-              <input type="hidden" readonly id="id_tabela" value="" data-id-tabela>
               <div class="secao-tabelas__lista__item__div-titulo">
                 <h2 class="secao-tabelas__lista__item__div-titulo__titulo" data-nome></h2>
               </div>
@@ -70,13 +69,19 @@
                   <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem" data-origem></p>
                 </div>
                 <div class="secao-tabelas__lista__item__div-informacoes__div-icones">
-                  <a class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito" href="/favoritos"><img src="../assets/img/favorito.svg" height="30px" width="30px"></a>
+                  <a class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito">
+                    <input type="hidden" readonly id="id_tabela" value="" data-id-tabela-favorito>
+                    <img src="../assets/img/favorito.svg" height="30px" width="30px">
+                  </a>
                   <button class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel">
                     <img src="../assets/img/critico.svg" class="icon" data-icon>
                   </button>
                 </div>
               </div>
-              <p class="secao-tabelas__lista__item__paragrafo" data-desc></p>
+              <div class="secao-tabelas__lista__item__div-paragrafo">
+                <p class="secao-tabelas__lista__item__paragrafo" data-desc></p>
+                <input type="hidden" readonly id="id_tabela" value="" data-id-tabela>
+              </div>
             </li>
           </template>
         </ul>
@@ -90,6 +95,8 @@
     <p class="rodape__paragrafo">&copy; Copyright 2023 - Desenvolvido por <a href="" class="rodape__paragrafo__link">Agilify</a></p>
     <img src="../assets/img/logoProjeto.svg" alt="Logo do grupo dos alunos do Inteli, o Project Athena" class="rodape__imagem-logo-grupo">
   </footer>
+
+
   <script type="text/javascript" src="../assets/js/pesquisaTabelas.js"></script>
   <script src="../assets/js/animacaoCabecalho.js"></script>
   <script src="../assets/js/manipulaItens.js" defer></script>

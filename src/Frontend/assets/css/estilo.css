@@ -205,10 +205,6 @@ html, body {
   align-content: center;
 }
 
-.rodape-favoritos {
-  position: absolute;
-}
-
 .rodape__imagem-logo-grupo {
   height: 40%;
   margin-right: 1rem;
@@ -295,12 +291,14 @@ html, body {
 .secao-tabelas__lista {
   display: none;
 }
+
 .secao-tabelas {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
 }
+
 .secao-tabelas__lista__item  {
   border: none;
   background-color: #FFFFFF;
@@ -315,21 +313,25 @@ html, body {
   margin-top: 1.5rem;
   margin-bottom: 5rem;
 }
+
 .secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto {
   color: #FFFFFF;
   background: #4DA9FF;
 }
+
 .secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem {
   background: #FFFFFF;
   color: #4DA9FF;
   border: solid 1px #4DA9FF;
 }
+
 .secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto, .secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem {
   font-size: 12px;
   padding: 0.5rem;
   text-align: center;
   border-radius: 5px;
 }
+
 .secao-tabelas__lista__item__div-titulo {
   position: absolute;
   margin-top: -3.48rem;
@@ -338,20 +340,23 @@ html, body {
   margin-left: -1rem;
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
-  box-shadow: 2px -1px 4px rgba(0, 0, 0, 0.2);
-  z-index: -1;
+  z-index: 0;
 }
+
 .hide {
   display: none;
 }
+
 .secao-tabelas__lista__item__div-titulo__titulo {
   font-weight: 500;
   font-size: 16px;
 }
+
 .secao-tabelas__lista__item__paragrafo {
   line-height: 1.7rem;
   font-size: 14.5px;
 }
+
 .secao-tabelas__lista__item__div-informacoes__div-detalhes {
   display: flex;
   align-items: center;
