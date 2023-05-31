@@ -29,29 +29,20 @@ $(document).ready(function () {
     }
   });
 
-  // Evento acionado quando o elemento com o ID "input-menu" é clicado
-  $('#input-menu').on('click', function () {
-    // Verifica se a caixa de seleção está marcada
-    if ($(this).prop('checked')) {
-      // Atualiza estilos e posição do menu quando marcado
-      $('#div-menu').css('position', 'absolute');
-      $('#div-menu').css('left', '18.7rem');
-      $('#input-menu').css('position', 'absolute');
-      $('#input-menu').css('left', '18.7rem');
-    } else {
-      // Remove estilos e retorna à posição padrão quando não marcado
-      $('#div-menu').css('position', 'initial');
-      $('#input-menu').css('left', '0rem');
-    }
-  });
-
   // Evento acionado quando um item da lista é clicado
-  $(document).on('click', '.secao-tabelas__lista__item', function (event) {
+  $(document).on('click', '.secao-tabelas__lista__item__div-paragrafo', function (event) {
     // Obtém o ID da tabela associado ao item clicado
     var idTabela = $(this).find('[data-id-tabela]').val();
     console.log('ID da tabela clicada:', idTabela);
     var url = 'informacoes_tabela?id=' + idTabela;
     // Redireciona para a URL com base no ID da tabela
+    window.location.href = url;
+  });
+
+  $(document).on('click', '.secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito', function (event) {
+    var idTabelaFavorito = $(this).find('[data-id-tabela-favorito]').val();
+    console.log('ID da tabela clicada:', idTabelaFavorito);
+    var url = '/favoritos/inserirTabela?id_tabela=' + idTabelaFavorito;
     window.location.href = url;
   });
 

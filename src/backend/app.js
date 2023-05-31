@@ -55,16 +55,14 @@ app.get('/', (req, res) => {
   res.render('html/index');
 });
 
+// Endpoint para renderizar a página de detalhes das tabelas
 app.get('/informacoes_tabela', (req, res) => {
-  const idTabela = req.query.id; // Obtém o ID da tabela da query string
-
-  // Execute a lógica necessária para obter as informações específicas da tabela
-  // com base no ID fornecido.
+   // Obtém o ID da tabela da query string
+  const idTabela = req.query.id;
 
   // Renderize o arquivo EJS e envie a resposta com os dados da tabela
   res.render('html/informacoes_tabela', { idTabela });
 });
-
 
 
 /********************* ENDPOINTS DA TABELA ********************/
@@ -365,7 +363,6 @@ app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
 });
 
 
-
 /*********** ENDPOINTS DE VISAO GERAL ***********/
 //Endpoint de listagem das informacoes de cada tabela
 app.get('/visaogeral', (req, res) => {
@@ -384,38 +381,6 @@ app.get('/visaogeral', (req, res) => {
 
 
 /*********** ENDPOINTS DE FAVORITOS ***********/
-//Endpoint de listagem das informacoes de cada tabela
-app.get('/favoritos', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM favorito`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send('Erro ao buscar tabelas.');
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
-//Endpoint para inserir tabela aos favoritos
-app.post('/favoritos/inserirtabela', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql =
-    `INSERT INTO favorito (data, id_usuario, id_tabela) VALUES ('${req.body.data}', '${req.body.id_usuario}', '${req.body.id_tabela}' )`;
-  console.log(sql);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-  });
-  res.write('<p>Tabela inserida com sucesso!</p>');
-  res.end();
-});
-
-
 //Endpoint para deletar tabela dos favoritos
 app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
