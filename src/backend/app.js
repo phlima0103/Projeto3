@@ -446,7 +446,39 @@ app.get('/favoritos/delete', urlencodedParser, (req, res) => {
   });
 });
 
+/*********** ENDPOINTS DE FEEDBACK ***********/
+//Endpoint para inserir um feedback
+app.post('/inserirfeedback', urlencodedParser, (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  const sql =
+    `INSERT INTO feedback (id_tabela, avaliacao, comentario) VALUES ('${req.body.id_tabela}', '${req.body.avaliacao}', '${req.body.comentario}' )`;
+  console.log(sql);
+  db.run(sql, [], err => {
+    if (err) {
+      throw err;
+    }
+  });
+  res.write('<p>Feedback inserido com sucesso!</p>');
+  res.end();
+})
+//Endpoint para buscar os feedbacks
+app.get('/feedbacks', (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  const sql = `SELECT * FROM feedback`;
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 // Inicia o servidor
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
