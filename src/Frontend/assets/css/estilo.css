@@ -364,6 +364,7 @@ main {
 .secao-tabelas__lista__item__paragrafo {
   line-height: 1.7rem;
   font-size: 14.5px;
+  margin-top: 1rem;
 }
 
 .secao-tabelas__lista__item__div-informacoes__div-detalhes {
@@ -371,20 +372,23 @@ main {
   align-items: center;
   gap: 1rem;
 }
+
 .secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito, .secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
+
 .secao-tabelas__lista__item__div-informacoes__div-icones {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
+
 .secao-tabelas__lista__item__div-informacoes {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -1rem;
 }
 
 /* Parte de TABS */
@@ -840,4 +844,10 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 
 .titulo-favoritos {
   font-size: 60px;
+}
+
+.secao-tabelas__lista__item__div-informacoes-favoritos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
