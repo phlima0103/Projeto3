@@ -744,6 +744,15 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   margin-left: 5rem;
   justify-content: center;
 }
+
+.secao-feedback__estrela {
+  position: absolute;
+}
+
+.secao-feedback__comentario {
+  padding-top: 2rem;
+}
+
 .secao-feedback__subtitulo {
   font-size: 17px;
 }

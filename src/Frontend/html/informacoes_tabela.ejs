@@ -207,53 +207,37 @@
       <label for="feedback" class="secao-botoes__label">Feedback</label>
       <section class="secao-conteudo">
         <section class="secao-conteudo-feedback">
-          <div class="secao-feedback__div">
-            <h2 class="secao-feedback__subtitulo">Como você avalia essa tabela?</h2>
-          </div>
-
-            <!-- <div class="secao-feedback__estrela-1" onclick="guarda(1)"></div>
-              <input type="radio" id="estrela1" name="estrela" value="1">
-              <label for="estrela1"></label>
-            <div class="secao-feedback__estrela-2" onclick="guarda(2)"></div>
-              <input type="radio" id="estrela2" name="estrela" value="2">
-              <label for="estrela2"></label>
-            <div class="secao-feedback__estrela-3" onclick="guarda(3)"></div>
-              <input type="radio" id="estrela3" name="estrela" value="3">
-              <label for="estrela3"></label>
-            <div class="secao-feedback__estrela-4" onclick="guarda(4)"></div>
-              <input type="radio" id="estrela4" name="estrela" value="4">
-              <label for="estrela4"></label>
-            <div class="secao-feedback__estrela-5" onclick="guarda(5)"></div>
-              <input type="radio" id="estrela5" name="estrela" value="5">
-              <label for="estrela5"></label>
-            <input type="hidden" name="avaliacao" value="" id="estrela">
-            <input type="hidden" name="id_tabela" value="" id="id_tabela">
-          </div> -->
-          <div class="secao-feedback__estrela">
-            <input type="radio" id="estrela5" name="estrela" value="5" onclick="guarda(5)">
-            <label for="estrela5"></label>
-            <input type="radio" id="estrela4" name="estrela" value="4" onclick="guarda(4)">
-            <label for="estrela4"></label>
-            <input type="radio" id="estrela3" name="estrela" value="3" onclick="guarda(3)">
-            <label for="estrela3"></label>
-            <input type="radio" id="estrela2" name="estrela" value="2" onclick="guarda(2)">
-            <label for="estrela2"></label>
-            <input type="radio" id="estrela1" name="estrela" value="1" onclick="guarda(1)">
-            <label for="estrela1"></label>
-            <input type="hidden" name="avaliacao" value="" id="estrela">
-            <input type="hidden" name="id_tabela" value="" id="id_tabela">
-          </div>
-          <div class="secao-feedback__comentario">
-            <div class="secao-feedback__comentario__div-label">
-              <label for="comente" class="secao-feedback__label">Comente:</label>
-              <div class="secao-feedback__icone" title="?"></div>
-                <span class="tooltip" id="tooltip">Mensagem exemplo</span>
+          <form method="post" action="/inserirfeedback">
+            <div class="secao-feedback__div">
+              <h2 class="secao-feedback__subtitulo">Como você avalia essa tabela?</h2>
+            
+              <div class="secao-feedback__estrela">
+                <input type="radio" id="estrela5" name="estrela" value="5" onclick="guarda(5)">
+                <label for="estrela5"></label>
+                <input type="radio" id="estrela4" name="estrela" value="4" onclick="guarda(4)">
+                <label for="estrela4"></label>
+                <input type="radio" id="estrela3" name="estrela" value="3" onclick="guarda(3)">
+                <label for="estrela3"></label>
+                <input type="radio" id="estrela2" name="estrela" value="2" onclick="guarda(2)">
+                <label for="estrela2"></label>
+                <input type="radio" id="estrela1" name="estrela" value="1" onclick="guarda(1)">
+                <label for="estrela1"></label>
+                <input type="hidden" name="avaliacao" value="" id="estrela">
+                <input type="hidden" name="id_tabela" value="" id="id_tabela">
+              </div>
             </div>
-            <textarea type="text" name="comentario" id="comente" class="secao-feedback__input"></textarea>
-            <div class="secao-feedback__div-botao">
-              <button class="secao-feedback__botao">Enviar Feedback</button>
+            <div class="secao-feedback__comentario">
+              <div class="secao-feedback__comentario__div-label">
+                <label for="comente" class="secao-feedback__label">Comente:</label>
+                <div class="secao-feedback__icone" title="?"></div>
+                  <span class="tooltip" id="tooltip">Mensagem exemplo</span>
+              </div>
+              <textarea type="text" name="comentario" id="comente" class="secao-feedback__input" required></textarea>
+              <div class="secao-feedback__div-botao">
+                <button class="secao-feedback__botao">Enviar Feedback</button>
+              </div>
             </div>
-          </div>
+            </form>
         </section>
       </section>
       <input type="button" name="tabs" class="secao-botoes__input-acesso" value="Solicitar Acesso" id="acesso"/>
@@ -269,17 +253,5 @@
   <script src="../assets/js/animacaoCabecalho.js"></script>
   <script src="../assets/js/preencheInformacoes.js" defer></script>
   <script src="../assets/js/pesquisaCampos.js"></script>
-  
-  <script>
-
-    function guarda(v) {
-      document.getElementById("estrela").value = v;
-    }
-    let url = new URL(window.location.href);
-    let params = url.searchParams;
-    let idTabela = params.get('id');
-       document.getElementById("id_tabela").value = idTabela;
-
-  </script>
 </body>
 </html>
