@@ -201,6 +201,8 @@
           </section>
         </section>
       </section>
+
+
       <input type="radio" name="tabs" class="secao-botoes__input" id="feedback"/>
       <label for="feedback" class="secao-botoes__label">Feedback</label>
       <section class="secao-conteudo">
@@ -240,5 +242,16 @@
   <script src="../assets/js/animacaoCabecalho.js"></script>
   <script src="../assets/js/preencheInformacoes.js" defer></script>
   <script src="../assets/js/pesquisaCampos.js"></script>
+  <script>
+
+    function guarda(v) {
+      document.getElementById("estrela").value = v;
+    }
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+    let idTabela = params.get('id');
+       document.getElementById("id_tabela").value = idTabela;
+
+  </script>
 </body>
 </html>
