@@ -19,11 +19,7 @@
   <body>
     <header class="cabecalho">
       <nav class="cabecalho__navegacao">
-        <input
-          type="checkbox"
-          class="cabecalho__navegacao__input"
-          id="input-menu"
-        />
+        <input type="checkbox" class="cabecalho__navegacao__input" id="input-menu"/>
         <div class="cabecalho__navegacao__div-icone" id="div-menu">
           <span class="cabecalho__navegacao__span"></span>
           <span class="cabecalho__navegacao__span"></span>
@@ -34,38 +30,20 @@
             <a href="/" class="cabecalho__navegacao__lista__item__link">Home</a>
           </li>
           <li class="cabecalho__navegacao__lista__item">
-            <a href="" class="cabecalho__navegacao__lista__item__link"
-              >Biblioteca</a
-            >
+            <a href="" class="cabecalho__navegacao__lista__item__link">Biblioteca</a>
           </li>
           <li class="cabecalho__navegacao__lista__item">
-            <a href="" class="cabecalho__navegacao__lista__item__link"
-              >Modo Noturno</a
-            >
+            <a href="" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
           </li>
           <li class="cabecalho__navegacao__lista__item">
-            <a href="" class="cabecalho__navegacao__lista__item__link"
-              >Favoritos</a
-            >
+            <a href="" class="cabecalho__navegacao__lista__item__link">Favoritos</a>
           </li>
           <li class="cabecalho__navegacao__lista__item">
-            <select
-              name="pasta"
-              id="pasta"
-              class="cabecalho__navegacao__lista__item__select"
-            >
-              <option
-                value="Suas Pastas"
-                class="cabecalho__navegacao__lista__item__select__opcao"
-                selected
-                disabled
-              >
+            <select name="pasta" id="pasta" class="cabecalho__navegacao__lista__item__select">
+              <option value="Suas Pastas" class="cabecalho__navegacao__lista__item__select__opcao" selected disabled>
                 Suas Pastas
               </option>
-              <option
-                value="Pasta 1"
-                class="cabecalho__navegacao__lista__item__select__opcao"
-              >
+              <option value="Pasta 1" class="cabecalho__navegacao__lista__item__select__opcao">
                 Pasta 1
               </option>
             </select>
@@ -74,12 +52,9 @@
       </nav>
     </header>
     <a class="div-voltar" href="/" id="voltar">
-      <img
-        src="../assets/img/voltar.svg"
-        alt="Botão voltar"
-        class="cabecalho__div-voltar__imagem-favoritos"
-      />
+      <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem-favoritos"/>
     </a>
+
     <main>
       <section id="secao-input" class="secao-pesquisa-favoritos">
         <h1 class="secao-pesquisa__titulo titulo-favoritos">FAVORITOS</h1>
@@ -93,39 +68,71 @@
           </button>
         </div>
       </section>
+
       <section class="secao-tabelas">
         <ul class="secao-tabelas__lista-favoritos">
+          <% for (tabela of tabelas) { %>
           <li class="secao-tabelas__lista__item">
-            <input type="hidden" readonly id="id_tabela" value="" data-id-tabela />
+            <input type="hidden" readonly id="id_tabela" value="<%= tabela.id%>" data-id-tabela/>
+            <input type="hidden" readonly value="<%= tabela.id_tabela%>" data-id-tabela-favoritada/>
             <div class="secao-tabelas__lista__item__div-titulo">
-              <h2 class="secao-tabelas__lista__item__div-titulo__titulo" data-nome></h2>
+              <h2 class="secao-tabelas__lista__item__div-titulo__titulo" data-nome><%= tabela.nome%></h2>
             </div>
-            <div class="secao-tabelas__lista__item__div-informacoes">
+            <div class="secao-tabelas__lista__item__div-informacoes-favoritos">
               <div class="secao-tabelas__lista__item__div-informacoes__div-detalhes">
-                <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto" data-categoria></p>
-                <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem" data-origem></p>
+                <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-assunto" data-categoria><%= tabela.categoria%></p>
+                <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem" data-origem><%= tabela.database%></p>
               </div>
               <div class="secao-tabelas__lista__item__div-informacoes__div-icones">
-                <button class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito">
-                  <img src="../assets/img/favoritoPreenchido.svg" height="30px" width="30px"/>
+                <button   class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito"></button>
+                  <img src="../assets/img/favoritoPreenchido.svg" data-imagem-favorito height="30px" width="30px"/>
                 </button>
-                <button class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel">
-                  <img src="../assets/img/critico.svg" class="icon" data-icon />
-                </button>
+                <% if (tabela.dado_sensivel === 'S') { %>
+                <div class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel" data-icone-sensivel style="display: block;">
+                  <input type="hidden" class="secao-tabelas__lista__item__div-informacoes__div-icones__input-sensivel" value="<%= tabela.dado_sensivel%>" data-sensivel>
+                  <img src="../assets/img/critico.svg" class="icon">
+                </div>
+                <% } else { %>
+                  <div class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel" data-icone-sensivel style="display: none;">
+                    <input type="hidden" class="secao-tabelas__lista__item__div-informacoes__div-icones__input-sensivel" value="<%= tabela.dado_sensivel%>" data-sensivel>
+                    <img src="../assets/img/critico.svg" class="icon">
+                  </div>
+                <% } %>
+                <div class="secao-tabelas__lista__item__div-informacoes__div-icones__lixeira" data-icone-lixeira>
+                  <input type="hidden" class="secao-tabelas__lista__item__div-informacoes__div-icones__lixeira" value="" data-lixeira>
+                  <img src="../assets/img/lixeira.svg" class="icon" height="25px" width="25px">
+                </div>
               </div>
             </div>
-            <p class="secao-tabelas__lista__item__paragrafo" data-descricao></p>
+            <div class="secao-tabelas__lista__item__paragrafo-div">
+              <p class="secao-tabelas__lista__item__paragrafo" data-descricao><%= tabela.descricao%></p>
+              <input type="hidden" readonly id="id_tabela" value="<%= tabela.id%>" data-id-tabela/>
+
+            </div>
           </li>
+          <% } %>
         </ul>
       </section>
     </main>
+
     <footer class="rodape rodape-favoritos">
-      <img src="../assets/img/logoBancoPan.svg" alt="Logo do Banco PAN" class="rodape__imagem-logo-pan"/>
-      <p class="rodape__paragrafo"> &copy; Copyright 2023 - Desenvolvido por
+      <img
+        src="../assets/img/logoBancoPan.svg"
+        alt="Logo do Banco PAN"
+        class="rodape__imagem-logo-pan"
+      />
+      <p class="rodape__paragrafo">
+        &copy; Copyright 2023 - Desenvolvido por
         <a href="" class="rodape__paragrafo__link">Agilify</a>
       </p>
-      <img src="../assets/img/logoProjeto.svg" alt="Logo do grupo dos alunos do Inteli, o Project Athena" class="rodape__imagem-logo-grupo"/>
+      <img
+        src="../assets/img/logoProjeto.svg"
+        alt="Logo do grupo dos alunos do Inteli, o Project Athena"
+        class="rodape__imagem-logo-grupo"
+      />
     </footer>
+
+    <script src="../assets/js/dadoSensivel.js"></script>
     <script src="../assets/js/animacaoCabecalho.js"></script>
   </body>
 </html>
