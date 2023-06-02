@@ -747,46 +747,33 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 .secao-feedback__subtitulo {
   font-size: 17px;
 }
-.secao-feedback__estrela {
-  background: #F3F4F9;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 15px;
-  border: none;
-  width: 300px;
-  height: 37px;
-  display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
+
+.secao-feedback__estrela:not(:checked) > input {
+  position: absolute;
+  appearance: none;
 }
-.secao-feedback__estrela-1 {
-  background: url("../img/estrela.svg") no-repeat left;
-  width: 40px;
-  height: 44px;
-  left: 60px;
+.secao-feedback__estrela:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 40px;
+  color: #666;
 }
-.secao-feedback__estrela-2 {
-  background: url("../img/estrela.svg") no-repeat left;
-  width: 40px;
-  height: 44px;
-  left: 95px;
+.secao-feedback__estrela:not(:checked) > label:before {
+  content: '★';
 }
-.secao-feedback__estrela-3 {
-  background: url("../img/estrela.svg") no-repeat left;
-  width: 40px;
-  height: 44px;
-  left: 130px;
+.secao-feedback__estrela > input:checked + label:hover,
+.secao-feedback__estrela > input:checked + label:hover ~ label,
+.secao-feedback__estrela > input:checked ~ label:hover,
+.secao-feedback__estrela > input:checked ~ label:hover ~ label,
+.secao-feedback__estrela > label:hover ~ input:checked ~ label {
+  color: #E58E09;
 }
-.secao-feedback__estrela-4 {
-  background: url("../img/estrela.svg") no-repeat left;
-  width: 40px;
-  height: 44px;
-  left: 165px;
+.secao-feedback__estrela:not(:checked) > label:hover,
+.secao-feedback__estrela:not(:checked) > label:hover ~ label {
+  color: #FF9E0B;
 }
-.secao-feedback__estrela-5{
-  background: url("../img/estrela.svg") no-repeat left;
-  width: 40px;
-  height: 44px;
-  left: 200px;
+.secao-feedback__estrela > input:checked ~ label {
+  color: #FFA723;
 }
 .secao-feedback__label {
   font-size: 17px;
@@ -808,6 +795,25 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   width: 40px;
   height: 44px;
 }
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4DA9FF;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.secao-feedback__icone:hover .tooltip {
+  visibility: visible;
+}
+.secao-feedback__icone:hover {
+  cursor: pointer;
+}
+
 .secao-feedback__botao{
   width: 250px;
   height: 45px;
