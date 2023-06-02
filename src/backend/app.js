@@ -381,26 +381,68 @@ app.get('/visaogeral', (req, res) => {
 
 
 /*********** ENDPOINTS DE FAVORITOS ***********/
-//Endpoint para deletar tabela dos favoritos
-app.delete('/favoritos/delete', urlencodedParser, (req, res) => {
+// Endpoint join para tabela e favorito
+app.get('/tabelasFavoritadas', (req,res) => {
+  res.statusCode = 200;
+  res.setHeader(`Acess-Control-Allow-Origin`,'*');
+  const sql = `SELECT favorito.id_tabela, tabela.id, tabela.nome, tabela.descricao, tabela.categoria, tabela.database, tabela.dado_sensivel
+  FROM tabela
+  INNER JOIN favorito ON tabela.id = favorito.id_tabela`;
+  
+  db.all(sql, [], (err,rows) =>{
+    if (err){
+      console.error(err.message);
+      res.status(500).send('Erro ao conectar tabelas');
+    } else {
+      res.render('html/favoritos', {tabelas: rows});
+    }
+  });
+});
+
+app.get('/tabelasFavoritadasSensivel', (req,res) => {
+  res.statusCode = 200;
+  res.setHeader(`Acess-Control-Allow-Origin`,'*');
+  const sql = `SELECT tabela.id, tabela.dado_sensivel, favorito.id_tabela
+  FROM tabela 
+  INNER JOIN favorito ON tabela.id = favorito.id_tabela`;
+  
+  db.all(sql, [], (err,rows) =>{
+    if (err){
+      console.error(err.message);
+      res.status(500).send('Erro ao conectar tabelas');
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+//Endpoint para inserir tabela aos favoritos
+app.get('/favoritos/inserirTabela', urlencodedParser, (req, res) => {
+  res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = 'DELETE FROM favorito WHERE data = ? AND id_usuario = ? AND id_tabela = ?';
-  const {data, id_usuario, id_tabela} = req.body
-  const params = [data, id_usuario, id_tabela]
-  
-  db.run(sql, params, function (err) {
+  let data = new Date().toLocaleDateString('pt-BR'); // data atual
+  const sql =
+    `INSERT INTO favorito (data, id_usuario, id_tabela) VALUES ('${data}', '1', '${req.query.id_tabela}' )`;
+  console.log(sql);
+  db.run(sql, [], err => {
     if (err) {
-      return res.status(500).json({ error: 'Erro ao excluir o item' });
+      throw err;
     }
-    
-    if (this.changes === 0) {
-      console.log(params)
-      return res
-        .status(500)
-        .json({ error: 'Item não encontrado ou já excluído', params });
+  });
+  res.redirect('/tabelasFavoritadas');
+});
+
+
+//Endpoint para deletar tabela dos favoritos
+app.get('/favoritos/delete', urlencodedParser, (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  sql = `DELETE FROM favorito WHERE id_tabela='${req.query.id_tabela}'`;
+  db.run(sql, [], err => {
+    if (err) {
+      throw err;
     }
-  
-    res.status(200).json({ message: 'Item excluído com sucesso' });
+    res.redirect('/tabelasFavoritadas');
   });
 });
 
