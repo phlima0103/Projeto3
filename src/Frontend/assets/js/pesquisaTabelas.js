@@ -70,13 +70,25 @@ fetch("/tabelas")
       const origem = card.querySelector("[data-origem]");
       const idTabela = card.querySelector("[data-id-tabela]");
       const idTabelaFavorito = card.querySelector("[data-id-tabela-favorito]");
+      const divDado = card.querySelector('[data-icone-sensivel]');
+      const dadoSensivel = card.querySelector('[data-sensivel]');
+      const favorito = card.querySelector('[data-imagem-favorito]');
       nome.textContent = tabela.nome;
       assunto.textContent = tabela.categoria;
       desc.textContent = tabela.descricao;
       origem.textContent = tabela.database;
       idTabela.value = tabela.id;
       idTabelaFavorito.value = tabela.id;
+      dadoSensivel.value = tabela.dado_sensivel;
       container.append(card);
+
+       // Verifica se a tabela é sensível e exibe o ícone
+       if(dadoSensivel.value == "S"){
+        divDado.style.display = "block";
+      } else {
+        divDado.style.display = "none";
+      }
+
       // Retorna um objeto com as informações da tabela
       return {
         nome: tabela.nome,
@@ -89,6 +101,7 @@ fetch("/tabelas")
         idTabelaFavorito: tabela.id,
         idTabela: tabela.id,
         verificacao_governanca: tabela.verificacao_governanca,
+        dadoSensivel: tabela.dado_sensivel,
         element: card,
       };
     });
