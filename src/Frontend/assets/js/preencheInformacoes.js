@@ -53,7 +53,10 @@ fetch(url)
     console.log(error);
   });
 
-function guarda(v) {
-  document.getElementById('estrela').value = v;
+// Armazena o valor da estrela clicada
+function guarda(valor) {
+  // Armazena o valor da estrela clicada no campo "estrela"
+  document.getElementById('estrela').value = valor;
 }
+// Armazena o valor do id da tabela no campo "id_tabela"
 document.getElementById('id_tabela').value = idTabela;

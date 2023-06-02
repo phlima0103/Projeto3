@@ -2,13 +2,22 @@
 const template = document.querySelector("[data-template]");
 const container = document.querySelector("[data-container]");
 const inputPesquisa = document.querySelector("[data-input-pesquisa]");
-const quantidade = document.querySelector("[data-quantidade]");
+const dropdown = document.querySelector("[dropdown]");
+const paginationLinks = document.querySelectorAll(".paginacao-link");
+const resultadosTela = document.getElementById("quantidade");
+const barraResultados = document.getElementById("texto-quantidade");
+const barra = document.getElementById("barra");
+const verificado = document.getElementById("verificado"); 
+const listaPaginacao = document.getElementById("paginacao");
 
 // Armazena os dados das tabelas
 let tabelas = [];
 
 // Armazena o objeto Fuse.js
 let fuse;
+
+// Armazena o número máximo de cartões mostrados
+let cartoesMaximos = 5;
 
 // Inicializa o Fuse.js com os dados
 function inicializaFuze(dados) {
@@ -18,25 +27,75 @@ function inicializaFuze(dados) {
     includeScore: true,
     threshold: 0.3,
     ignoreLocation: true,
-    minMatchCharLength: 2,
+    minMatchCharLength: 2
   };
+
   // Inicializa o Fuse.js com os dados e configurações
   fuse = new Fuse(dados, opcoes);
 }
 
+// Oculta a barra de resultados e a paginação
+listaPaginacao.style.display = "none";
+
 // Função que executa a pesquisa difusa
-function pesquisaDifusa(valor) {
-  // Executa a pesquisa difusa
-  const resultados = fuse.search(valor);
-  // Armazena os elementos visíveis
-  const visibilidadeItem = new Set();
-  // Exibe os itens correspondentes nos resultados da pesquisa
-  for (const { item, score } of resultados) {
-    // Remove a classe "hide" do elemento
-    item.element.classList.remove("hide");
-    // Adiciona o elemento ao conjunto de elementos visíveis
-    visibilidadeItem.add(item.element);
+function pesquisaDifusa(valor, pagina) {
+  // Verifica se o input do valor é vazio
+  if (valor === '') {
+    // Esconde a barra e o número de resultados
+    barra.style.display = "none";
+    barraResultados.textContent = '';
+    listaPaginacao.style.display = "none";
+    return;
   }
+
+  // Executa o "fuzzy search"
+  const resultados = fuse.search(valor);
+
+  // Ordena os itens pelos resultados
+  const resultadosOrdenados = resultados.map(({ item, score }) => ({ item, score }))
+  .sort((a, b) => a.score - b.score);
+
+  // Armazena os elementos visíveis e o número de cartões mostrados
+  const visibilidadeItem = new Set();
+  let cartoesMostrados = 0;
+
+  // Verifica se o número de resultados é menor ou igual ao cartoesMaximos
+  if (resultadosOrdenados.length <= cartoesMaximos) {
+    resultadosOrdenados.forEach(({ item }) => {
+      if (!item) {
+        return;
+      }
+      // Remove a classe "hide" do elemento
+      item.element.classList.remove("hide");
+
+      // Adiciona o elemento ao conjunto de elementos visíveis
+      visibilidadeItem.add(item.element);
+
+      // Incrementa o contador de cartões mostrados
+      cartoesMostrados++;
+    });
+  } else {
+    // Calcula o índice inicial e final dos resultados a serem mostrados na página
+    const indiceInicial = (pagina - 1) * cartoesMaximos;
+    const indiceFinal = Math.min(indiceInicial + cartoesMaximos, resultadosOrdenados.length);
+
+    // Exibe os itens correspondentes nos resultados da pesquisa
+    for (let i = indiceInicial; i < indiceFinal; i++) {
+      const { item, score } = resultadosOrdenados[i];
+      if (!item) {
+        break;
+      }
+      // Remove a classe "hide" do elemento
+      item.element.classList.remove("hide");
+
+      // Adiciona o elemento ao conjunto de elementos visíveis
+      visibilidadeItem.add(item.element);
+
+      // Incrementa o contador de cartões mostrados
+      cartoesMostrados++;
+    }
+  }
+
   // Oculta os itens que não estão nos resultados da pesquisa
   for (const tabela of tabelas) {
     // Verifica se o elemento não está no conjunto de elementos visíveis
@@ -45,16 +104,43 @@ function pesquisaDifusa(valor) {
       tabela.element.classList.add("hide");
     }
   }
-  // Atualiza a quantidade de resultados da pesquisa
-  quantidade.textContent = resultados.length;
+
+  // Atualiza a barra de resultados e a paginação
+  if (cartoesMostrados !== 0) {
+    // Exibe a barra de resultados e a paginação
+    barraResultados.textContent = "Resultados: " + resultados.length;
+    // Exibe a barra de resultados e a paginação
+    barra.style.display = "block";
+    listaPaginacao.style.display = "block";
+  }
 }
+
+// Adiciona um "EventListener" colocando um click a cada item do link, que são os botões da paginação
+paginationLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    // Obtém o número da página
+    const pagina = parseInt(link.textContent);
+    // Executa a pesquisa difusa
+    pesquisaDifusa(inputPesquisa.value.toLowerCase().replace(/[^a-zA-Z0-9_.-/]/g, ""), pagina);
+  });
+});
+
 // Evento acionado quando houver alterações no campo de entrada
 inputPesquisa.addEventListener("input", (e) => {
   // Obtém o valor do campo de entrada
   const valor = e.target.value.toLowerCase().replace(/[^a-zA-Z0-9_.-/]/g, "");
   // Executa a pesquisa difusa
-  pesquisaDifusa(valor);
+  pesquisaDifusa(valor, 1);
 });
+
+// Função que muda a quantidade máxima de cartões a serem mostrados
+function quantidadeMaxima(opcao) {
+  cartoesMaximos = parseInt(opcao);
+  // Executa a pesquisa difusa novamente
+  const valor = inputPesquisa.value.toLowerCase().replace(/[^a-zA-Z0-9_.-/]/g, "");
+  pesquisaDifusa(valor, 1);
+}
 
 // Realiza uma requisição fetch e inicializa o Fuse.js
 fetch("/tabelas")
@@ -82,8 +168,8 @@ fetch("/tabelas")
       dadoSensivel.value = tabela.dado_sensivel;
       container.append(card);
 
-       // Verifica se a tabela é sensível e exibe o ícone
-       if(dadoSensivel.value == "S"){
+      // Verifica se a tabela é sensível e exibe o ícone
+      if(dadoSensivel.value == "S"){
         divDado.style.display = "block";
       } else {
         divDado.style.display = "none";
@@ -98,13 +184,16 @@ fetch("/tabelas")
         defasagem: tabela.defasagem,
         database: tabela.database,
         caminho: tabela.caminho,
-        idTabelaFavorito: tabela.id,
-        idTabela: tabela.id,
+        id: tabela.id,
         verificacao_governanca: tabela.verificacao_governanca,
         dadoSensivel: tabela.dado_sensivel,
-        element: card,
+        element: card
       };
     });
     // Inicializa o Fuse.js com os dados da tabela
     inicializaFuze(tabelas);
-});
+    // Exibe todos os resultados em uma única página se a quantidade for menor ou igual ao cartoesMaximos
+    if (tabelas.length <= cartoesMaximos) {
+      pesquisaDifusa("", 1);
+    }
+  });
