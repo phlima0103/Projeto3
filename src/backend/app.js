@@ -399,21 +399,18 @@ app.get('/tabelasFavoritadas', (req,res) => {
   });
 });
 
-app.get('/tabelasFavoritadasSensivel', (req,res) => {
-  res.statusCode = 200;
+// Endpoint para pegar os ids das tabelas favoritadas
+app.get('/favoritos/ids', (req,res) => {
   res.setHeader(`Acess-Control-Allow-Origin`,'*');
-  const sql = `SELECT tabela.id, tabela.dado_sensivel, favorito.id_tabela
-  FROM tabela 
-  INNER JOIN favorito ON tabela.id = favorito.id_tabela`;
-  
-  db.all(sql, [], (err,rows) =>{
+  const sql = `SELECT tabela.id FROM tabela JOIN favorito ON tabela.id = favorito.id_tabela`;
+  db.all(sql, [], (err,rows) => {
     if (err){
       console.error(err.message);
       res.status(500).send('Erro ao conectar tabelas');
     } else {
       res.json(rows);
     }
-  });
+  })
 });
 
 //Endpoint para inserir tabela aos favoritos
