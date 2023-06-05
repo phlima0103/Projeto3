@@ -62,11 +62,63 @@
             Descrição Tabela
           </h2>
           <div class="secao-conteudo__secao-descricao__div">
-            <div class="secao-conteudo__secao-detalhes__div-editar div-editar" >
-              <button class="secao-conteudo__secao-descricao__div__botao-editar">
+            <div class="secao-conteudo__secao-detalhes__div-editar div-editar">
+              <button class="secao-conteudo__secao-descricao__div__botao-editar" onclick="editar()">
                 <img src="../assets/img/edicao.svg" alt="Ícone para edição dos metadados" class="secao-conteudo__secao-descricao__div__botao-editar__imagem" />
               </button>
-            </div>
+              <div method="post" action="/solicitar" class="pop-up" id="editar-pop-up">
+                <div class="pop-up__content">
+                  <label for="titulo" class="pop-up__label__titulo">Nome da Tabela:</label>
+                  <input type="text" id="titulo" class="pop-up__input" placeholder="Título">
+          
+                  <label for="descricao" class="pop-up__label">Descrição Tabela:</label>
+                  <input type="text" id="descricao" class="pop-up__input" placeholder="Conteúdo">
+          
+                  <label for="conjunto-dados" class="pop-up__label">Conjunto de dados:</label>
+                  <input type="text" id="conjunto-dados" class="pop-up__input">
+            
+                  <label for="owner" class="pop-up__label">Owner:</label>
+                  <input type="text" id="owner" class="pop-up__input" class="pop-up__input__owner">
+            
+                  <label for="steward" class="pop-up__label">Steward:</label>
+                  <input type="text" id="steward" class="pop-up__input">
+          
+                  <label for="ativo" class="pop-up__label">Ativo:</label>
+                  <input type="text" id="ativo" class="pop-up__input">
+          
+                  <label for="tipo-ativo" class="pop-up__label">Tipo de Ativo:</label>
+                  <input type="text" id="tipo-ativo" class="pop-up__input">
+          
+                  <label for="database" class="pop-up__label">Database:</label>
+                  <input type="text" id="database" class="pop-up__input">
+          
+                  <label for="caminho-tabela" class="pop-up__label">Caminho tabela:</label>
+                  <input type="text" id="caminho-tabela" class="pop-up__input">
+          
+                  <label for="ultima-atualizacao" class="pop-up__label">Última Atualização:</label>
+                  <input type="text" id="ultima-atualizacao" class="pop-up__input">
+          
+                  <label for="data-criacao" class="pop-up__label">Data de criação:</label>
+                  <input type="text" id="data-criacao" class="pop-up__input">
+          
+                  <label for="defasagem" class="pop-up__label">Defasagem:</label>
+                  <input type="text" id="defasagem" class="pop-up__input">
+          
+                  <label for="frequencia-atualizacao" class="pop-up__label">Frequência de atualização:</label>
+                  <input type="text" id="frequencia-atualizacao" class="pop-up__input">
+          
+                  <label for="engenheiro-ingestao" class="pop-up__label">Engenheiro responsável pela ingestão:</label>
+                  <input type="text" id="engenheiro-ingestao" class="pop-up__input">
+            
+                  <button id="enviar-solicitacao" type="submit" class="pop-up__button" onclick="enviar_solicitacao">Solicitar Edição</button>
+                  <button id="fechar-pop-up" class="fechar-pop-up"><img src="./Fechar_Edição.svg" alt="Ícone para fechar pop-up"></button>
+                  
+                  <input type="hidden" name="id_usuario" value="1"> 
+                  <input type="hidden" name="sql_code">
+
+                </div>
+              </div>
+            </div>>
             <p class="secao-conteudo__secao-descricao__div__paragrafo" data-descricao-tabela></p>
             <p class="secao-conteudo__secao-descricao__div__paragrafo-dados-sensiveis"> Contém contéudo sensível
               <img src="./conteudo_sensivel.svg" alt="" class="secao-conteudo__secao-descricao__div__paragrafo__imagem"/>
@@ -78,11 +130,6 @@
             Responsável pela Tabela
           </h2>
           <div class="secao-conteudo__secao-descricao__div">
-            <div class="secao-conteudo__secao-detalhes__div-editar div-editar">
-              <button class="secao-conteudo__secao-descricao__div__botao-editar">
-                <img src="../assets/img/edicao.svg" alt="Ícone para edição dos metadados" class="secao-conteudo__secao-descricao__div__botao-editar__imagem"/>
-              </button>
-            </div>
             <div class="secao-conteudo__secao-responsavel__div-input">
               <label for="conjunto-dados" class="secao-conteudo__secao-responsavel__div__label">Conjunto de Dados:</label>
               <input type="text" name="conjunto-dados" class="secao-conteudo__secao-responsavel__div__label__input" placeholder="Conteúdo" readonly data-conjunto-dados-tabela/>
@@ -102,11 +149,6 @@
             Detalhes da Tabela
           </h2>
           <div class="secao-conteudo__secao-detalhes__div">
-            <div class="secao-conteudo__secao-detalhes__div-editar div-editar">
-              <button class="secao-conteudo__secao-detalhes__div__botao-editar">
-                <img src="../assets/img/edicao.svg" alt="Ícone para edição dos metadados" class="secao-conteudo__secao-detalhes-editar__imagem"/>
-              </button>
-            </div>
             <div class="secao-conteudo__secao-detalhes__div-input">
               <label for="ativo" class="secao-conteudo__secao-detalhes__div__label">Ativo:</label>
                 <input type="text" name="ativo" class="secao-conteudo__secao-detalhes__div__input" placeholder="Conteúdo" readonly/>
@@ -134,11 +176,6 @@
                 Disponibilidade e Atualização
               </h2>
               <div class="secao-conteudo__secao-detalhes__div">
-                <div class="secao-conteudo__secao-detalhes__div-editar div-editar">
-                  <button class="secao-conteudo__secao-detalhes__div__botao-editar">
-                    <img src="../assets/img/edicao.svg" alt="Ícone para edição dos metadados" class="secao-conteudo__secao-detalhes-editar__imagem"/>
-                  </button>
-                </div>
                 <div class="secao-conteudo__secao-tecnico__div-atualizacao__div-input">
                   <label for="data-criacao" class="secao-conteudo__secao-tecnico__div-atualizacao__label">Data de criação:</label>
                   <input type="text" name="data-criacao" class="secao-conteudo__secao-tecnico__div-atualizacao__input" placeholder="16/05/2023" readonly/>
@@ -177,11 +214,6 @@
             <ul class="secao-conteudo__secao-campos__lista" data-container>
               <template data-template>
                 <li class="secao-conteudo__secao-campos__lista__item card">   
-                  <div class="secao-conteudo__secao-campos__lista__item__div-editar">
-                    <button class="secao-conteudo__secao-campos__lista__item__div-tipo__botao">
-                      <img src="../assets/img/edicao.svg" alt="Ícone de edição" class="secao-conteudo__secao-campos__lista__item__div-tipo__botao__imagem">
-                    </button>
-                  </div>           
                   <div class="secao-conteudo__secao-campos__lista__item__div-texto">
                     <div class="secao-conteudo__secao-campos__lista__item__div-tipo">
                       <p class="secao-conteudo__secao__campos__lista__item__div-tipo__paragrafo" data-tipo>
@@ -201,43 +233,30 @@
           </section>
         </section>
       </section>
-
-
       <input type="radio" name="tabs" class="secao-botoes__input" id="feedback"/>
       <label for="feedback" class="secao-botoes__label">Feedback</label>
       <section class="secao-conteudo">
         <section class="secao-conteudo-feedback">
-          <form method="post" action="/inserirfeedback">
-            <div class="secao-feedback__div">
-              <h2 class="secao-feedback__subtitulo">Como você avalia essa tabela?</h2>
-            
-              <div class="secao-feedback__estrela">
-                <input type="radio" id="estrela5" name="estrela" value="5" onclick="guarda(5)">
-                <label for="estrela5"></label>
-                <input type="radio" id="estrela4" name="estrela" value="4" onclick="guarda(4)">
-                <label for="estrela4"></label>
-                <input type="radio" id="estrela3" name="estrela" value="3" onclick="guarda(3)">
-                <label for="estrela3"></label>
-                <input type="radio" id="estrela2" name="estrela" value="2" onclick="guarda(2)">
-                <label for="estrela2"></label>
-                <input type="radio" id="estrela1" name="estrela" value="1" onclick="guarda(1)">
-                <label for="estrela1"></label>
-                <input type="hidden" name="avaliacao" value="" id="estrela">
-                <input type="hidden" name="id_tabela" value="" id="id_tabela">
-              </div>
+          <div class="secao-feedback__div">
+            <h2 class="secao-feedback__subtitulo">Como você avalia essa tabela?</h2>
+          </div>
+          <div class="secao-feedback__estrela">
+            <div class="secao-feedback__estrela-1"></div>
+            <div class="secao-feedback__estrela-2"></div>
+            <div class="secao-feedback__estrela-3"></div>
+            <div class="secao-feedback__estrela-4"></div>
+            <div class="secao-feedback__estrela-5"></div>
+          </div>
+          <div class="secao-feedback__comentario">
+            <div class="secao-feedback__comentario__div-label">
+              <label for="comente" class="secao-feedback__label">Comente:</label>
+              <div class="secao-feedback__icone"></div>
             </div>
-            <div class="secao-feedback__comentario">
-              <div class="secao-feedback__comentario__div-label">
-                <label for="comente" class="secao-feedback__label">Comente:</label>
-                <div class="secao-feedback__icone" title="?"></div>
-                  <span class="tooltip" id="tooltip">Mensagem exemplo</span>
-              </div>
-              <textarea type="text" name="comentario" id="comente" class="secao-feedback__input" required></textarea>
-              <div class="secao-feedback__div-botao">
-                <button class="secao-feedback__botao">Enviar Feedback</button>
-              </div>
+            <textarea type="text"id="comente" class="secao-feedback__input"></textarea>
+            <div class="secao-feedback__div-botao">
+              <button class="secao-feedback__botao">Enviar Feedback</button>
             </div>
-            </form>
+          </div>
         </section>
       </section>
       <input type="button" name="tabs" class="secao-botoes__input-acesso" value="Solicitar Acesso" id="acesso"/>
@@ -253,5 +272,6 @@
   <script src="../assets/js/animacaoCabecalho.js"></script>
   <script src="../assets/js/preencheInformacoes.js" defer></script>
   <script src="../assets/js/pesquisaCampos.js"></script>
+  <script src="../assets/js/editarInformacao.js"></script>
 </body>
 </html>

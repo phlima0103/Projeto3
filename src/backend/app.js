@@ -105,6 +105,23 @@ app.post('/solicitar', urlencodedParser, (req, res) => {
   })
 });
 
+app.post('/solicitar', urlencodedParser, (req, res) => {
+  const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
+  const {id_usuario, sql_code} = req.body
+  var data = new Date(); 
+  var data = new Date().toISOString().slice(0, 19).replace("T", " ");
+  console.log(data);
+  const valores = [id_usuario, data, sql_code]
+
+  db.run(sql, valores, (err) => {
+    if (err) {
+      throw err
+    } else {
+      res.status(200).send("Tabela inserida")
+    }
+  })
+});
+
 app.get('/solicitacoes', (req, res) => {
   const sql = "SELECT * FROM solicitacoes"
   db.all(sql, (err, rows) => {
@@ -126,23 +143,6 @@ app.delete('/recusar', urlencodedParser, (req, res) => {
     }
   });
 });
-
-
-app.post('/solicitar', (req, res) => {
-  const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
-  const {id_usuario, data, sql_code} = req.body
-  const valores = [id_usuario, data, sql_code]
-
-  db.run(sql, valores, (err) => {
-    if (err) {
-      throw err
-    } else {
-      console.log(sql)
-      res.status(200).send("Tabela inserida")
-    }
-  })
-})
-
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
 app.post('/atualizar', urlencodedParser, (req, res) => {
@@ -446,39 +446,7 @@ app.get('/favoritos/delete', urlencodedParser, (req, res) => {
   });
 });
 
-/*********** ENDPOINTS DE FEEDBACK ***********/
-//Endpoint para inserir um feedback
-app.post('/inserirfeedback', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql =
-    `INSERT INTO feedback (id_tabela, avaliacao, comentario) VALUES ('${req.body.id_tabela}', '${req.body.avaliacao}', '${req.body.comentario}' )`;
-  console.log(sql);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-  });
-  res.write('<p>Feedback inserido com sucesso!</p>');
-  res.end();
-})
-//Endpoint para buscar os feedbacks
-app.get('/feedbacks', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM feedback`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send(err);
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
 // Inicia o servidor
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
-
