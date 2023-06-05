@@ -381,6 +381,37 @@ app.get('/visaogeral', (req, res) => {
 
 
 /*********** ENDPOINTS DE FAVORITOS ***********/
+// Endpoint que lista todos os favoritos
+app.get('/favoritos', (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  const sql = `SELECT favorito.id_tabela, tabela.id, tabela.nome, tabela.descricao, tabela.categoria, tabela.database, tabela.dado_sensivel
+  FROM tabela
+  INNER JOIN favorito ON tabela.id = favorito.id_tabela`;
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send('Erro ao buscar tabelas.');
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+// Endpoint para pegar os ids das tabelas favoritadas
+app.get('/favoritos/ids', (req,res) => {
+  res.setHeader(`Acess-Control-Allow-Origin`,'*');
+  const sql = `SELECT tabela.id FROM tabela JOIN favorito ON tabela.id = favorito.id_tabela`;
+  db.all(sql, [], (err,rows) => {
+    if (err){
+      console.error(err.message);
+      res.status(500).send('Erro ao conectar tabelas');
+    } else {
+      res.json(rows);
+    }
+  })
+});
+
 // Endpoint join para tabela e favorito
 app.get('/tabelasFavoritadas', (req,res) => {
   res.statusCode = 200;

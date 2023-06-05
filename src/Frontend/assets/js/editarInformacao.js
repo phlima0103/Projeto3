@@ -10,6 +10,7 @@ var id = urlParams.get('id');
 var url = '/tabela?id=' + id;
 
 // Obtém os elementos do DOM que serão preenchidos com as informações da tabela
+const main = document.querySelector(".principal-detalhes-tabelas")
 const titulo = document.querySelector("#titulo")
 const descricao = document.querySelector("#descricao")
 const conjuntoDados = document.querySelector("#conjunto-dados")
@@ -48,6 +49,7 @@ fetch(url)
     defasagem.value = tabela.defasagem
     // frequenciaAtualizacao.value = tabela.frequenciaAtualizacao
     engenheiroIngestao.value = tabela.eng_ingestao
+
   })
   .catch(error => {
     console.log(error);

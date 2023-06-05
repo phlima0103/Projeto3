@@ -26,19 +26,10 @@
           <a href="/" class="cabecalho__navegacao__lista__item__link">Home</a>
         </li>
         <li class="cabecalho__navegacao__lista__item">
-          <a href="" class="cabecalho__navegacao__lista__item__link">Biblioteca</a>
-        </li>
-        <li class="cabecalho__navegacao__lista__item">
           <a href="" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
         </li>
         <li class="cabecalho__navegacao__lista__item">
           <a href="" class="cabecalho__navegacao__lista__item__link">Favoritos</a>
-        </li>
-        <li class="cabecalho__navegacao__lista__item">
-          <select name="pasta" id="pasta" class="cabecalho__navegacao__lista__item__select">
-            <option value="Suas Pastas" class="cabecalho__navegacao__lista__item__select__opcao" selected disabled>Suas Pastas</option>
-            <option value="Pasta 1" class="cabecalho__navegacao__lista__item__select__opcao">Pasta 1</option>
-          </select>
         </li>
       </ul>
     </nav>
@@ -62,11 +53,12 @@
             Descrição Tabela
           </h2>
           <div class="secao-conteudo__secao-descricao__div">
-
             <p class="secao-conteudo__secao-descricao__div__paragrafo" data-descricao-tabela></p>
-            <p class="secao-conteudo__secao-descricao__div__paragrafo-dados-sensiveis"> Contém contéudo sensível
-              <img src="./conteudo_sensivel.svg" alt="" class="secao-conteudo__secao-descricao__div__paragrafo__imagem"/>
-            </p>
+            <div id="div-sensivel" class="secao-tabelas_lista_item_div-informacoes_div-icones__botao-sensivel" data-icone-sensivel>
+              <p class="secao-conteudo__secao-descricao__div__paragrafo-dados-sensiveis"> Contém contéudo sensível
+                <img src="../assets/img/critico.svg" alt="" class="secao-conteudo__secao-descricao__div__paragrafo__imagem"/>
+                <input type="hidden" class="secao-tabelas_lista_item_div-informacoes_div-icones__input-sensivel" value="" data-sensivel>
+            </div>
           </div>
         </section>
         <section class="secao-conteudo__secao-descricao">
@@ -98,7 +90,8 @@
               <button class="secao-conteudo__secao-descricao__div__botao-editar" onclick="editar()">
                 <img src="../assets/img/edicao.svg" alt="Ícone para edição dos metadados" class="secao-conteudo__secao-descricao__div__botao-editar__imagem" />
               </button>
-              <div method="post" action="/solicitar" class="pop-up" id="editar-pop-up">
+              <form method="post" action="/solicitar" class="pop-up" id="editar-pop-up">
+                <button type="button" id="fechar-pop-up" class="fechar-pop-up"><img src="../assets/img/fecharEdicao.svg" alt="Ícone para fechar pop-up"></button>
                 <div class="pop-up__content">
                   <label for="titulo" class="pop-up__label__titulo">Nome da Tabela:</label>
                   <input type="text" id="titulo" class="pop-up__input" placeholder="Título">
@@ -142,14 +135,12 @@
                   <label for="engenheiro-ingestao" class="pop-up__label">Engenheiro responsável pela ingestão:</label>
                   <input type="text" id="engenheiro-ingestao" class="pop-up__input">
             
-                  <button id="enviar-solicitacao" type="submit" class="pop-up__button" onclick="enviar_solicitacao">Solicitar Edição</button>
-                  <button id="fechar-pop-up" class="fechar-pop-up"><img src="../assets/img/Fechar_Edição.svg" alt="Ícone para fechar pop-up"></button>
-                  
+                  <button id="enviar-solicitacao" type="submit" class="pop-up__button" onclick="enviar_solicitacao">Solicitar Edição</button>                  
                   <input type="hidden" name="id_usuario" value="1"> 
                   <input type="hidden" name="sql_code">
 
                 </div>
-              </div>
+              </form>
 
             </div>
             <div class="secao-conteudo__secao-detalhes__div-input">

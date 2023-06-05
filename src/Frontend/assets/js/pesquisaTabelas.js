@@ -19,6 +19,9 @@ let fuse;
 // Armazena o número máximo de cartões mostrados
 let cartoesMaximos = 5;
 
+// Armazena o id das tabelas favoritadas
+var listaFavoritos = [];
+
 // Inicializa o Fuse.js com os dados
 function inicializaFuze(dados) {
   // Define as configurações para o Fuse.js
@@ -142,8 +145,17 @@ function quantidadeMaxima(opcao) {
   pesquisaDifusa(valor, 1);
 }
 
-// Realiza uma requisição fetch e inicializa o Fuse.js
-fetch("/tabelas")
+// Realiza uma requisição fetch para mostrar todas as tabelas favoritadas
+fetch("/favoritos/ids")
+  .then((res) => res.json())
+  .then((data) => {
+    // Mapeia os dados retornados pelo endpoint
+    data = data.map((favorito) => {
+      // Retorna o id da tabela e armazena no array listaFavoritos
+      listaFavoritos.push(favorito.id);
+    });
+  // Realiza uma requisição fetch para mostrar todas as tabelas e inicializa o Fuse.js
+  fetch("/tabelas")
   .then((res) => res.json())
   .then((data) => {
     // Mapeia os dados da tabela para criar elementos de cartão e armazenar informações
@@ -167,14 +179,16 @@ fetch("/tabelas")
       idTabelaFavorito.value = tabela.id;
       dadoSensivel.value = tabela.dado_sensivel;
       container.append(card);
-
       // Verifica se a tabela é sensível e exibe o ícone
       if(dadoSensivel.value == "S"){
         divDado.style.display = "block";
       } else {
         divDado.style.display = "none";
       }
-
+      // Verifica se a tabela é favorita e, caso seja, exibe o ícone de favorito preenchido
+      if(listaFavoritos.includes(tabela.id)){
+        favorito.src = "../assets/img/favoritoPreenchido.svg";
+      }
       // Retorna um objeto com as informações da tabela
       return {
         nome: tabela.nome,
@@ -196,4 +210,9 @@ fetch("/tabelas")
     if (tabelas.length <= cartoesMaximos) {
       pesquisaDifusa("", 1);
     }
+  })
+  .catch((error) => {
+    // Tratamento de erros para qualquer um dos fetches
+    console.error(error);
   });
+});
