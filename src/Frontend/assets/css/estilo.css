@@ -541,6 +541,9 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 .secao-conteudo__secao-descricao__div__botao-editar, .secao-conteudo__secao-detalhes__div__botao-editar, .secao-conteudo__secao-responsavel__div__botao-editar, .secao-conteudo__secao-tecnico__div__botao-editar, .secao-conteudo__secao-campos__lista__item__div-tipo__botao {
   border: none;
   background: transparent;
+  top: -30%;
+  position: absolute;
+  right: 1rem;
 }
 
 .secao-conteudo__secao-descricao__div__botao-editar:hover, .secao-conteudo__secao-detalhes__div__botao-editar:hover, .secao-conteudo__secao-responsavel__div__botao-editar:hover, .secao-conteudo__secao-tecnico__div__botao-editar:hover {
@@ -978,4 +981,64 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 
 .paginacao-link:hover {
   background-color: #F3F4F9;
+}
+
+.pop-up {
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 830px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+.pop-up__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pop-up__label__titulo {
+  font-weight: bold;
+}
+
+.pop-up__label {
+  font-weight: bold;
+}
+
+.pop-up__input {
+  box-sizing: border-box;
+  padding: 5px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 15px;
+}
+
+.pop-up__button {
+  padding: 10px 20px;
+  background-color: #4DA9FF;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.fechar-pop-up {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: #aaa;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.fechar-pop-up:hover {
+  color: #333;
 }
