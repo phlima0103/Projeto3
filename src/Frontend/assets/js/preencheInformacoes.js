@@ -17,7 +17,9 @@ const ownerTabela = document.querySelector('[data-owner-tabela]');
 const categoriaTabela = document.querySelector('[data-conjunto-dados-tabela]');
 const stewardTabela = document.querySelector('[data-steward-tabela]');
 const databaseTabela = document.querySelector('[data-database-tabela]');
-const engenheiroIngestaoTabela = document.querySelector('[data-engenheiro-sustentacao-tabela]');
+const engenheiroIngestaoTabela = document.querySelector(
+  '[data-engenheiro-sustentacao-tabela]'
+);
 const caminhoTabela = document.querySelector('[data-caminho-tabela]');
 const defasagemTabela = document.querySelector('[data-defasagem-tabela]');
 
@@ -38,7 +40,7 @@ fetch(url)
     engenheiroIngestaoTabela.value = tabela.eng_ingestao;
     defasagemTabela.value = tabela.defasagem;
     caminhoTabela.value = tabela.caminho;
-    
+
     // Define o estilo dos elementos de voltar ao realizar a requisição fetch
     voltar.style.display = 'flex';
     voltar.style.position = 'absolute';
@@ -50,3 +52,11 @@ fetch(url)
   .catch(error => {
     console.log(error);
   });
+
+// Armazena o valor da estrela clicada
+function guarda(valor) {
+  // Armazena o valor da estrela clicada no campo "estrela"
+  document.getElementById('estrela').value = valor;
+}
+// Armazena o valor do id da tabela no campo "id_tabela"
+document.getElementById('id_tabela').value = idTabela;
