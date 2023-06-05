@@ -72,14 +72,18 @@ $(document).ready(function () {
     }
   });
 
-
-  // Evento acionado quando o elemento com o ID "botao-editar" é clicado
+  // Armazena o botão de edição 
   const botaoEditar = document.querySelectorAll(".secao-conteudo__secao-descricao__div__botao-editar__imagem");
 
+  // Armazena a tag main
+  const main = document.querySelector(".principal-detalhes-tabelas");
 
+  // Percorre por todos os botões de edição
   botaoEditar.forEach((botao) => {
+    // Adiciona um evento de clique para cada botão de edição
     botao.addEventListener("click", () => {
-      const descricao= document.getElementById("descricao").value;
+      // Armazena os valores decada input de acordo com o ID 
+      const descricao = document.getElementById("descricao").value;
       const conjuntoDados = document.getElementById("conjunto-dados").value;
       const owner = document.getElementById("owner").value;
       const steward = document.getElementById("steward").value;
@@ -92,42 +96,36 @@ $(document).ready(function () {
       const defasagem = document.getElementById("defasagem").value;
       const frequenciaAtualizacao = document.getElementById("frequencia-atualizacao").value;
       const engenheiroIngestao = document.getElementById("engenheiro-ingestao").value;
-  
-  
-      document.getElementById("descricao").value = descricao;
-      document.getElementById("conjunto-dados").value = conjuntoDados;
-      document.getElementById("owner").value = owner;
-      document.getElementById("steward").value = steward;
-      document.getElementById("ativo").value = ativo;
-      document.getElementById("tipo-ativo").value = tipoAtivo;
-      document.getElementById("database").value = database;
-      document.getElementById("caminho-tabela").value = caminhoTabela;
-      document.getElementById("ultima-atualizacao").value = ultimaAtualizacao;
-      document.getElementById("data-criacao").value = dataCriacao;
-      document.getElementById("defasagem").value = defasagem;
-      document.getElementById("frequencia-atualizacao").value = frequenciaAtualizacao;
-      document.getElementById("engenheiro-ingestao").value = engenheiroIngestao;
-  
-  
+      
+      // Armazena o pop-up de edição
       const popUp = document.getElementById("editar-pop-up");
+      // Exibe o pop-up de edição
       popUp.style.display = "block";
-  
+
+      // Atualiza a altura da tag main
+      main.style.minHeight = "170vh";
+      
+      // Armazena o botão de salvar edição
       const salvarEdicao = document.getElementById("enviar-solicitacao");
+
+      // Adiciona um evento de clique para o botão de salvar edição
       salvarEdicao.addEventListener("click", () => {
-        const novoDescricao= document.getElementById("descricao").value;
+        // Armazena os novos valores de cada input de acordo com o ID
+        const novoDescricao = document.getElementById("descricao").value;
         const novoConjuntoDados = document.getElementById("conjunto-dados").value;
         const novoOwner = document.getElementById("owner").value;
         const novoSteward = document.getElementById("steward").value;
         const novoAtivo = document.getElementById("ativo").value;
         const novoTipoAtivo = document.getElementById("tipo-ativo").value;
         const novoDatabase = document.getElementById("database").value;
-        const novoCaminhoTabela= document.getElementById("caminho-tabela").value;
-        const novoUltimaAtualizacao= document.getElementById("ultima-atualizacao").value;
+        const novoCaminhoTabela = document.getElementById("caminho-tabela").value;
+        const novoUltimaAtualizacao = document.getElementById("ultima-atualizacao").value;
         const novoDataCriacao = document.getElementById("data-criacao").value;
         const novoDefasagem = document.getElementById("defasagem").value;
         const novoFrequenciaAtualizacao = document.getElementById("frequencia-atualizacao").value;
         const novoEngenheiroIngestao = document.getElementById("engenheiro-ingestao").value; 
-  
+      
+        // Atualiza os valores de cada input de acordo com o ID
         botao.parentElement.querySelector("").textContent = novoDescricao;
         botao.parentElement.querySelector("").textContent = novoConjuntoDados;
         botao.parentElement.querySelector("").textContent = novoOwner;
@@ -141,19 +139,32 @@ $(document).ready(function () {
         botao.parentElement.querySelector("").textContent = novoDefasagem;
         botao.parentElement.querySelector("").textContent = novoFrequenciaAtualizacao;
         botao.parentElement.querySelector("").textContent = novoEngenheiroIngestao;
-  
-        popUp.style.display = "none";
         
-      });
-  
-      const fecharPopUp = document.getElementById("fechar-pop-up");
-      fecharPopUp.addEventListener("click", () => {
+        // Oculta o pop-up de edição
         popUp.style.display = "none";
       });
-  
+      
+      // Armazena o botão de fechar pop-up
+      const fecharPopUp = document.getElementById("fechar-pop-up");
+
+      // Adiciona um evento de clique para o botão de fechar pop-up
+      fecharPopUp.addEventListener("click", () => {
+        // Oculta o pop-up de edição
+        popUp.style.display = "none";
+
+        // Atualiza a altura da tag main
+        main.style.minHeight = "160vh";
+      });
+      
+      // Fecha o pop-up de edição quando o usuário clicar fora do pop-up
       window.addEventListener("click", (event) => {
+        // Verifica se o usuário clicou fora do pop-up
         if (event.target === popUp) {
+          // Oculta o pop-up de edição
           popUp.style.display = "none";
+
+          // Atualiza a altura da tag main
+          main.style.minHeight = "160vh";
         }
       });
     });

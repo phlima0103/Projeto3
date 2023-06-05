@@ -30,6 +30,9 @@ fetch(url)
     // Obtém a tabela a partir dos dados retornados
     let tabela = data[0];
 
+    const divDado = document.querySelector('[data-icone-sensivel]');
+    const dadoSensivel = document.querySelector('[data-sensivel]');
+
     // Preenche os elementos do DOM com as informações da tabela
     tituloTabela.innerText = tabela.nome;
     descricaoTabela.innerText = tabela.descricao;
@@ -40,14 +43,20 @@ fetch(url)
     engenheiroIngestaoTabela.value = tabela.eng_ingestao;
     defasagemTabela.value = tabela.defasagem;
     caminhoTabela.value = tabela.caminho;
+    dadoSensivel.value = tabela.dado_sensivel;
 
     // Define o estilo dos elementos de voltar ao realizar a requisição fetch
-    voltar.style.display = 'flex';
+    voltar.style.display = 'block';
     voltar.style.position = 'absolute';
     voltar.style.zIndex = '1';
-    voltar.style.marginTop = '1rem';
-    voltar.style.marginLeft = '1.2rem';
-    linkVoltar.style.position = 'absolute';
+    voltar.style.margin = '1rem';
+
+    // Verifica se a tabela é sensível e exibe o ícone
+    if (dadoSensivel.value == 'S') {
+      divDado.style.display = 'block';
+    } else {
+      divDado.style.display = 'none';
+    }
   })
   .catch(error => {
     console.log(error);
