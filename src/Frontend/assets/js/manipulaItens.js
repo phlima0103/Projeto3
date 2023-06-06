@@ -72,6 +72,24 @@ $(document).ready(function () {
     }
   });
 
+  // Altera a imagem do botão que exibe os filtros
+  $('#btn-filtro').hover(() => {
+    $('#Preenchido').css('display', 'inline')
+    $('#Vazio').css('display', 'none')
+  }, () => {
+    $('#Preenchido').css('display', 'none')
+    $('#Vazio').css('display', 'inline')
+  })
+
+  // Altera a imagem do botão que exibe os filtros
+  $('#btn-favoritos').hover(() => {
+    $('#FavoritoPreenchido').css('display', 'inline')
+    $('#FavoritoVazio').css('display', 'none')
+  }, () => {
+    $('#FavoritoPreenchido').css('display', 'none')
+    $('#FavoritoVazio').css('display', 'inline')
+  })
+
   // Armazena o botão de edição 
   const botaoEditar = document.querySelectorAll(".secao-conteudo__secao-descricao__div__botao-editar__imagem");
 
