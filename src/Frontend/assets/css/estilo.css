@@ -256,6 +256,7 @@ main {
 .secao-pesquisa__div-pesquisa {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .secao-pesquisa__div-pesquisa__botao {
@@ -266,14 +267,16 @@ main {
   transition: all ease .2s;
 }
 
+#FavoritoPreenchido {
+  display: none
+}
+
 .botao-favorito:hover {
   cursor: pointer;
-  background: transparent url("../img/favoritoPreenchido.svg") no-repeat left;
 }
 
 .botao-filtro:hover {
   cursor: pointer;
-  background: transparent url("../img/filtroPreenchido.svg") no-repeat;
 }
 
 .secao-tabelas__lista {
@@ -1020,4 +1023,35 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 
 .fechar-pop-up:hover {
   color: #333;
+}
+
+.filtro-button {
+  display: flex;
+  padding: 5px 10px;
+  margin-left: 5px; 
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  outline: none;
+  text-decoration:none;
+  border: 1px solid #4DA9FF;
+  border-radius: 100px;
+  color: #4DA9FF;
+  font-size: 16px;
+}
+
+
+.secao-pesquisa__div-filtro {
+  grid-template-columns: auto auto auto;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); 
+  height: 150px;
+  text-align: center;
+  border-radius: 15px;  
+  max-width: 650px; 
+  padding: 25px 70px 25px 70px;
+  display: none;
+  background-color: #F3F4F9;
+  overflow-y: scroll;
+  align-items: center;
+  gap: 25px;
 }

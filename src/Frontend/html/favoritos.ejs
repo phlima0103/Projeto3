@@ -45,13 +45,18 @@
       <section id="secao-input" class="secao-pesquisa-favoritos">
         <h1 class="secao-pesquisa__titulo titulo-favoritos">FAVORITOS</h1>
         <div class="secao-pesquisa__div-pesquisa">
-          <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input input-favoritos" data-input-pesquisa/>
-          <button class="secao-pesquisa__div-pesquisa__botao botao-filtro">
-            <img src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem"/>
-          </button>
-          <button class="secao-pesquisa__div-pesquisa__botao botao-favorito">
-            <img src="../assets/img/favoritoPreenchido.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px"/>
-          </button>
+          <div style="display: flex; flex-direction: row; margin-bottom: -2px;">
+            <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input" data-input-pesquisa>
+            <button id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro"> 
+              <img id="Vazio" src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
+              <img id="Preenchido" src="../assets/img/filtroPreenchido.svg" style="display: none" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
+            </button>
+            <a id="btn-favoritos" class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/tabelasFavoritadas">
+              <img src="../assets/img/favoritoPreenchido.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px">
+            </a>
+          </div>
+          <div class="secao-pesquisa__div-filtro">
+          </div>
         </div>
       </section>
       <section class="secao-tabelas">
@@ -113,5 +118,7 @@
     <script src="../assets/js/dadoSensivel.js"></script>
     <script src="../assets/js/animacaoCabecalho.js"></script>
     <script src="../assets/js/pesquisaFavoritos.js"></script>
+    <script src="../assets/js/manipulaItens.js" defer></script>
+    <script src="../assets/js/mapeiaCategorias.js"></script>
   </body>
 </html>

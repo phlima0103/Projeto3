@@ -19,8 +19,66 @@ let fuse;
 // Armazena o número máximo de cartões mostrados
 let cartoesMaximos = 5;
 
+// Armazena os filtros selecionados pelo usuário
+var filtros = []
+
 // Armazena o id das tabelas favoritadas
 var listaFavoritos = [];
+
+$(document).ready(() => { 
+  // Armazena o estado da div que exibe os filtros (aberto ou fechado)
+  var toggle = true
+  $(document).on('click', '#btn-filtro', () => {
+    // Ao clicar, caso esteja fechado ele abre
+    if (toggle){
+      $('#btn-filtro').css('background-color', '#F3F4F9')
+      $('#btn-filtro').css('padding', '5px')
+      $('#btn-filtro').css('border-top-right-radius', '15px')
+      $('#btn-filtro').css('border-top-left-radius', '15px')
+      $('#btn-filtro').css('box-shadow', '4px 4px 4px rgba(0, 0, 0, 0.25)')
+      $( ".secao-pesquisa__div-filtro" ).slideDown( 300 );
+      $( ".secao-pesquisa__div-filtro" ).css( "display", "inline-grid");
+      $( ".secao-pesquisa__div-filtro" ).css( "height", "150px");
+
+      toggle = !toggle
+
+    // caso esteja aberto ele fecha
+    } else {
+      $('#btn-filtro').css('background-color', 'transparent')
+      $('#btn-filtro').css('padding-top', '0')
+      $('#btn-filtro').css('box-shadow', 'none')
+      $( ".secao-pesquisa__div-filtro" ).slideUp( 300 );
+      
+      toggle = !toggle
+    }
+  })
+  // Ao selecionar um filtro
+  $(document).on('click', '.filtro-button', (event) => {
+
+    // caso o array filtros não incluir o filtro selecionado
+    if(!filtros.includes(event.target.textContent)) {
+      // Adiciona a categoria ao array filtros
+      filtros.push(event.target.textContent)
+
+      // Altera as cores do botão
+      $(`#${event.target.id}`).css('background-color', '#4DA9FF')
+      $(`#${event.target.id}`).css('color', '#FFF')
+
+      // Realiza a pesquisa novamente
+      pesquisaDifusa($('#input-pesquisa').val(), 1)
+    } else{
+      // Remove a categoria ao array filtros
+      filtros.splice (filtros.indexOf(event.target.textContent), 1)
+
+      // Altera as cores do botão
+      $(`#${event.target.id}`).css('background-color', 'transparent')
+      $(`#${event.target.id}`).css('color', '#4DA9FF')
+
+      // Realiza a pesquisa novamente
+      pesquisaDifusa($('#input-pesquisa').val(), 1)
+    }
+  })
+})
 
 // Inicializa o Fuse.js com os dados
 function inicializaFuze(dados) {
@@ -51,8 +109,12 @@ function pesquisaDifusa(valor, pagina) {
     return;
   }
 
-  // Executa o "fuzzy search"
-  const resultados = fuse.search(valor);
+  // Executa o "fuzzy search" e filtra de acordo com o array filtros
+  const resultados = fuse.search(valor).filter(resultado => {
+    if (filtros.includes(resultado.item.categoria) || filtros[0] === undefined){
+      return true
+    }
+  });
 
   // Ordena os itens pelos resultados
   const resultadosOrdenados = resultados.map(({ item, score }) => ({ item, score }))
