@@ -521,11 +521,23 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 }
 
 .secao-conteudo__secao-descricao__div__botao-editar, .secao-conteudo__secao-detalhes__div__botao-editar, .secao-conteudo__secao-responsavel__div__botao-editar, .secao-conteudo__secao-tecnico__div__botao-editar, .secao-conteudo__secao-campos__lista__item__div-tipo__botao {
-  border: none;
-  background: transparent;
-  top: -30%;
+  background: #FFFFFF;
+  color: #4DA9FF;
+  padding: .5rem 1.6rem;
+  border-radius: 15px;
+  border:#4DA9FF solid 1px;
+  margin-bottom: 1rem;
+  transition: all ease .2s;
+  position: sticky;
+  outline: none;
   position: absolute;
   right: 1rem;
+  top:-2.5rem;
+}
+
+.secao-conteudo__secao-descricao__div__botao-editar:hover {
+  background: #d5dfe4;
+  cursor: pointer;
 }
 
 .secao-conteudo__secao-descricao__div__botao-editar:hover, .secao-conteudo__secao-detalhes__div__botao-editar:hover, .secao-conteudo__secao-responsavel__div__botao-editar:hover, .secao-conteudo__secao-tecnico__div__botao-editar:hover {
