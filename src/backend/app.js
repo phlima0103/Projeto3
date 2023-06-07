@@ -128,20 +128,20 @@ app.delete('/recusar', urlencodedParser, (req, res) => {
 });
 
 
-app.post('/solicitar', (req, res) => {
-  const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
-  const {id_usuario, data, sql_code} = req.body
-  const valores = [id_usuario, data, sql_code]
+// app.post('/solicitar', (req, res) => {
+//   const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
+//   const {id_usuario, data, sql_code} = req.body
+//   const valores = [id_usuario, data, sql_code]
 
-  db.run(sql, valores, (err) => {
-    if (err) {
-      throw err
-    } else {
-      console.log(sql)
-      res.status(200).send("Tabela inserida")
-    }
-  })
-})
+//   db.run(sql, valores, (err) => {
+//     if (err) {
+//       throw err
+//     } else {
+//       console.log(sql)
+//       res.status(200).send("Tabela inserida")
+//     }
+//   })
+// })
 
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
