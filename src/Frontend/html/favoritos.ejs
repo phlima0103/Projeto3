@@ -17,7 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
-    <header class="cabecalho">
+    <header class="cabecalho" id="cabecaFav">
       <nav class="cabecalho__navegacao">
         <input type="checkbox" class="cabecalho__navegacao__input" id="input-menu">
         <div class="cabecalho__navegacao__div-icone" id="div-menu">
@@ -30,7 +30,7 @@
             <a href="/" class="cabecalho__navegacao__lista__item__link">Home</a>
           </li>
           <li class="cabecalho__navegacao__lista__item">
-            <a href="" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
+            <a href="" id="botao-noturno" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
           </li>
           <li class="cabecalho__navegacao__lista__item">
             <a href="/tabelasFavoritadas" class="cabecalho__navegacao__lista__item__link">Favoritos</a>
@@ -38,16 +38,16 @@
         </ul>
       </nav>
     </header>
-    <a class="div-voltar" href="/" id="voltar">
-      <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem-favoritos"/>
+    <a class="div-voltar" href="/">
+      <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem-favoritos" id="voltar"/>
     </a>
-    <main>
+    <main class="favoritos-tela">
       <section id="secao-input" class="secao-pesquisa-favoritos">
         <h1 class="secao-pesquisa__titulo titulo-favoritos">FAVORITOS</h1>
         <div class="secao-pesquisa__div-pesquisa">
           <div style="display: flex; flex-direction: row; margin-bottom: -2px;">
             <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input" data-input-pesquisa>
-            <button id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro"> 
+            <button id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro btn-filtro"> 
               <img id="Vazio" src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
               <img id="Preenchido" src="../assets/img/filtroPreenchido.svg" style="display: none" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
             </button>
@@ -104,6 +104,7 @@
         src="../assets/img/logoBancoPan.svg"
         alt="Logo do Banco PAN"
         class="rodape__imagem-logo-pan"
+        id="pan-logo"
       />
       <p class="rodape__paragrafo">
         &copy; Copyright 2023 - Desenvolvido por
@@ -113,6 +114,7 @@
         src="../assets/img/logoProjeto.svg"
         alt="Logo do grupo dos alunos do Inteli, o Project Athena"
         class="rodape__imagem-logo-grupo"
+        id="athena-logo"
       />
     </footer>
     <script src="../assets/js/dadoSensivel.js"></script>
@@ -120,5 +122,6 @@
     <script src="../assets/js/pesquisaFavoritos.js"></script>
     <script src="../assets/js/manipulaItens.js" defer></script>
     <script src="../assets/js/mapeiaCategorias.js"></script>
+    <script src="../assets/js/modoNoturno.js"></script>
   </body>
 </html>
