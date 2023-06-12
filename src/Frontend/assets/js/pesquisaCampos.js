@@ -35,29 +35,34 @@ function inicializaFuze(dados) {
 
 // Função que executa a pesquisa difusa
 function pesquisaDifusa(valor) {
-  // Executa a pesquisa difusa
-  const resultados = fuse.search(valor);
-
-  // Armazena os elementos visíveis
-  const visibilidadeItem = new Set();
-
-  // Exibe os itens correspondentes nos resultados da pesquisa
-  for (const { item, score } of resultados) {
-    console.log(item);
-    // Remove a classe "hide" do elemento
-    item.element.classList.remove("hide");
-
-    // Adiciona o elemento ao conjunto de elementos visíveis
-    visibilidadeItem.add(item.element);
-  }
-
-  // Oculta os itens que não estão nos resultados da pesquisa
-  for (const campo of campos) {
-    // Verifica se o elemento não está no conjunto de elementos visíveis
-    if (!visibilidadeItem.has(campo.element)) {
-      // Adiciona a classe "hide" ao elemento
-      campo.element.classList.add("hide");
+  if (valor !== "") {
+    // Executa a pesquisa difusa
+    const resultados = fuse.search(valor);
+  
+    // Armazena os elementos visíveis
+    const visibilidadeItem = new Set();
+  
+    // Exibe os itens correspondentes nos resultados da pesquisa
+    for (const { item, score } of resultados) {
+      console.log(item);
+      // Remove a classe "hide" do elemento
+      item.element.classList.remove("hide");
+  
+      // Adiciona o elemento ao conjunto de elementos visíveis
+      visibilidadeItem.add(item.element);
     }
+  
+    // Oculta os itens que não estão nos resultados da pesquisa
+    for (const campo of campos) {
+      // Verifica se o elemento não está no conjunto de elementos visíveis
+      if (!visibilidadeItem.has(campo.element)) {
+        // Adiciona a classe "hide" ao elemento
+        campo.element.classList.add("hide");
+      }
+    }
+  } else {
+    container.innerHTML = ''
+    exibir('')
   }
 }
 
