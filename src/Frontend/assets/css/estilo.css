@@ -666,7 +666,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   border-radius: 15px;
   padding: 1rem;
   margin-top: 2rem;
-  padding: .2rem 0.5rem 1.5rem 1rem;
+  padding: 1rem 1.5rem 1rem;
 }
 
 .secao-conteudo-campos {
