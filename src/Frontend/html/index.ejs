@@ -44,11 +44,11 @@
       <div class="secao-pesquisa__div-pesquisa">
         <div style="display: flex; flex-direction: row; margin-bottom: -2px;">
           <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input" data-input-pesquisa>
-          <button id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro btn-filtro"> 
+          <button title="Clique para acessar os filtros" id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro btn-filtro"> 
             <img id="Vazio" src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
             <img id="Preenchido" src="../assets/img/filtroPreenchido.svg" style="display: none" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
           </button>
-          <a id="btn-favoritos" class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/tabelasFavoritadas">
+          <a title="Clique para acessar tabelas favoritadas" id="btn-favoritos" class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/tabelasFavoritadas">
             <img id="FavoritoVazio" src="../assets/img/favorito.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px">
             <img id="FavoritoPreenchido" src="../assets/img/favoritoPreenchido.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px">
           </a>
@@ -75,14 +75,14 @@
                   <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem" data-origem></p>
                 </div>
                 <div class="secao-tabelas__lista__item__div-informacoes__div-icones">
-                  <a class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito">
-                    <input type="hidden" readonly id="id_tabela" value="" data-id-tabela-favorito>
-                    <img src="../assets/img/favorito.svg" height="30px" width="30px" data-imagem-favorito>
-                  </a>
                   <div id="div-sensivel" class="secao-tabelas_lista_item_div-informacoes_div-icones__botao-sensivel" data-icone-sensivel>
                     <input type="hidden" class="secao-tabelas_lista_item_div-informacoes_div-icones__input-sensivel" value="" data-sensivel>
                     <img src="../assets/img/critico.svg" class="icon">
                   </div>
+                  <a class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito">
+                    <input type="hidden" readonly id="id_tabela" value="" data-id-tabela-favorito>
+                    <img src="../assets/img/favorito.svg" height="30px" width="30px" data-imagem-favorito>
+                  </a>
                 </div>
               </div>
               <div class="secao-tabelas__lista__item__div-paragrafo">
