@@ -60,7 +60,7 @@ $(document).ready(function () {
     // Verifica se a caixa de seleção está marcada
     if ($(this).is(':checked')) {
       // Atualiza a altura da tag main quando o input 'campos' for ativo
-      $('.principal-detalhes-tabelas').css('min-height', '385vh');
+      $('.principal-detalhes-tabelas').css('min-height', '305vh');
     }
   });
 
