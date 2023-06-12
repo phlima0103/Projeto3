@@ -1,8 +1,3 @@
-
-
-
-
-
 function editar(){
 
   // Obtém os parâmetros da URL atual
@@ -81,6 +76,6 @@ function editar(){
   
     
     const sql_code = document.querySelector("#sql_code")
-    sql_code.value = `UPDATE tabela SET nome='${titulo.value}', descricao='${descricao.value}', categoria='${conjuntoDados.value}', owner='${owner.value}', steward='${steward.value}', database='${database.value}', caminho='${caminhoTabela.value}, defasagem='${defasagem.value}', eng_ingestao='${engenheiroIngestao.value}' WHERE id=61`
+    sql_code.value = `UPDATE tabela SET nome='${titulo.value}', descricao='${descricao.value}', categoria='${conjuntoDados.value}', owner='${owner.value}', steward='${steward.value}', database='${database.value}', caminho='${caminhoTabela.value}', defasagem='${defasagem.value}', eng_ingestao='${engenheiroIngestao.value}' WHERE id=61`
   }
   
