@@ -120,16 +120,19 @@ function pesquisaDifusa(valor, pagina) {
   const resultadosOrdenados = resultados.map(({ item, score }) => ({ item, score }))
   .sort((a, b) => {
     // Verifica se "verificacao_governanca" contém "S"
-    const aHasS = a.item.verificacao_governanca.includes("S");
-    const bHasS = b.item.verificacao_governanca.includes("S");
+    const aTemS = a.item.verificacao_governanca.includes("S");
+    const bTemS = b.item.verificacao_governanca.includes("S");
 
     // Ordena de acordo com a presença de "S" em "verificacao_governanca"
-    if (aHasS && !bHasS) {
-      return -1; // a vem antes de b
-    } else if (!aHasS && bHasS) {
-      return 1; // b vem antes de a
+    if (aTemS && !bTemS) {
+      // a vem antes de b
+      return -1; 
+    } else if (!aTemS && bTemS) {
+      // b vem antes de a
+      return 1; 
     } else {
-      return 0; // Sem mudança na ordenação
+      // Sem mudança na ordenação
+      return 0; 
     }
   });
 
