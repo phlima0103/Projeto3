@@ -88,7 +88,7 @@
           <div class="secao-conteudo__secao-detalhes__div">
             <div class="secao-conteudo__secao-detalhes__div-editar div-editar">
               <button class="secao-conteudo__secao-descricao__div__botao-editar" onclick="editar()">
-                <img src="../assets/img/edicao.svg" alt="Ícone para edição dos metadados" class="secao-conteudo__secao-descricao__div__botao-editar__imagem" />
+                Editar Dados
               </button>
               <form method="post" action="/solicitar" class="pop-up" id="editar-pop-up">
                 <button type="button" id="fechar-pop-up" class="fechar-pop-up"><img src="../assets/img/fecharEdicao.svg" alt="Ícone para fechar pop-up"></button>
@@ -99,7 +99,7 @@
                   <label for="descricao" class="pop-up__label">Descrição Tabela:</label>
                   <input type="text" id="descricao" class="pop-up__input" placeholder="Conteúdo">
           
-                  <label for="conjunto-dados" class="pop-up__label">Conjunto de dados:</label>
+                  <label for="conjunto-dados" class="pop-up__label">Conjunto de Dados:</label>
                   <input type="text" id="conjunto-dados" class="pop-up__input">
             
                   <label for="owner" class="pop-up__label">Owner:</label>
@@ -117,27 +117,26 @@
                   <label for="database" class="pop-up__label">Database:</label>
                   <input type="text" id="database" class="pop-up__input">
           
-                  <label for="caminho-tabela" class="pop-up__label">Caminho tabela:</label>
+                  <label for="caminho-tabela" class="pop-up__label">Caminho Tabela:</label>
                   <input type="text" id="caminho-tabela" class="pop-up__input">
           
                   <label for="ultima-atualizacao" class="pop-up__label">Última Atualização:</label>
                   <input type="text" id="ultima-atualizacao" class="pop-up__input">
           
-                  <label for="data-criacao" class="pop-up__label">Data de criação:</label>
+                  <label for="data-criacao" class="pop-up__label">Data de Criação:</label>
                   <input type="text" id="data-criacao" class="pop-up__input">
           
                   <label for="defasagem" class="pop-up__label">Defasagem:</label>
                   <input type="text" id="defasagem" class="pop-up__input">
           
-                  <label for="frequencia-atualizacao" class="pop-up__label">Frequência de atualização:</label>
+                  <label for="frequencia-atualizacao" class="pop-up__label">Frequência de Atualização:</label>
                   <input type="text" id="frequencia-atualizacao" class="pop-up__input">
           
-                  <label for="engenheiro-ingestao" class="pop-up__label">Engenheiro responsável pela ingestão:</label>
+                  <label for="engenheiro-ingestao" class="pop-up__label">Engenheiro Responsável Pela ingestão:</label>
                   <input type="text" id="engenheiro-ingestao" class="pop-up__input">
             
-                  <button id="enviar-solicitacao" type="submit" class="pop-up__button" onclick="enviar_solicitacao">Solicitar Edição</button>                  
-                  <input type="hidden" name="id_usuario" value="1"> 
-                  <input type="hidden" name="sql_code">
+                  <button id="enviar-solicitacao" type="submit" class="pop-up__button" onclick="enviar_solicitacao()">Solicitar Edição</button>                                    <input type="hidden" name="id_usuario" value="1"> 
+                  <input type="hidden" id="sql_code" name="sql_code">
 
                 </div>
               </form>
@@ -198,7 +197,10 @@
             <h2 class="secao-conteudo__subtitulo">Informações de campos da tabela</h2>
               <div class="secao-conteudo__div-pesquisa">
                 <select name="tipo-campo" id="tipo-campo" class="secao-conteudo__div-pesquisa__select">
-                  <option value="tipo-campo" class="secao-conteudo__div-pesquisa__select__opcao" selected disabled>Tipo Campo</option>
+                  <option value="tipo-campo" class="secao-conteudo__div-pesquisa__select__opcao">Tipo Campo</option>
+                  <option value="string" class="secao-conteudo__div-pesquisa__select__opcao">string</option>
+                  <option value="boolean" class="secao-conteudo__div-pesquisa__select__opcao">boolean</option>
+                  <option value="integer" class="secao-conteudo__div-pesquisa__select__opcao">integer</option>
                 </select>
                 <input type="search" name="pesquisa-campo" id="pesquisa-campo" placeholder="Digite o campo desejado" class="secao-conteudo__div-pesquisa__input" data-input-pesquisa>
               </div>

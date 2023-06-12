@@ -13,6 +13,11 @@ let fuse;
 var filtros = [];
 
 $(document).ready(() => {
+  if($("#input-pesquisa") == "") {
+    container.innerHTML = '';
+    exibir()
+  } 
+
   // Armazena o estado da div que exibe os filtros (aberto ou fechado)
   var toggle = true;
   $(document).on("click", "#btn-filtro", () => {
@@ -52,8 +57,7 @@ $(document).ready(() => {
 
       // Realiza a pesquisa novamente
       $("#input-pesquisa").val() !== ""
-        ? pesquisaDifusa($("#input-pesquisa").val())
-        : null;
+        pesquisaDifusa($("#input-pesquisa").val())
     } else {
       // Remove a categoria ao array filtros
       filtros.splice(filtros.indexOf(event.target.textContent), 1);
@@ -64,8 +68,7 @@ $(document).ready(() => {
 
       // Realiza a pesquisa novamente
       $("#input-pesquisa").val() !== ""
-        ? pesquisaDifusa($("#input-pesquisa").val())
-        : null;
+        pesquisaDifusa($("#input-pesquisa").val())
     }
   });
 });
@@ -97,6 +100,24 @@ function pesquisaDifusa(valor) {
       }
     });
 
+    if (filtros[0] !== undefined && valor === "") {
+      filtros.map(filtro => {
+        let teste = fuse.search(filtro).filter(resultado => {
+          if (
+            filtros.includes(resultado.item.categoria) ||
+            filtros[0] === undefined
+          ) {
+            return true;
+          }
+        }).map(search => {
+          resultados.push(search)
+          console.log(resultados)
+        })
+
+        console.log(teste);
+      })
+    }
+
     // Armazena os elementos visíveis
     const visibilidadeItem = new Set();
 
@@ -118,6 +139,7 @@ function pesquisaDifusa(valor) {
       }
     }
   } else {
+    container.innerHTML = '';
     exibir()
   }
 }
@@ -138,48 +160,50 @@ function exibir () {
     .then((data) => {
       // Mapeia os dados de favoritos para criar elementos de cartão e armazenar informações
       favoritos = data.map((favoritos) => {
-        // Preenche os elementos do DOM com as informações da tabela
-        const card = template.content.cloneNode(true).children[0];
-        const tipo = card.querySelector("[data-categoria]");
-        const nome = card.querySelector("[data-nome]");
-        const desc = card.querySelector("[data-descricao]");
-        const origem = card.querySelector("[data-origem]");
-        const categoria = card.querySelector("[data-categoria]");
-        const divDado = card.querySelector("[data-icone-sensivel]");
-        const dadoSensivel = card.querySelector("[data-sensivel]");
-        const id = card.querySelector("[data-id-tabela]");
-        const idTabelaFavoritada = card.querySelector(
-          "[data-id-tabela-favoritada]"
-        );
-        id.value = favoritos.id_tabela;
-        idTabelaFavoritada.value = favoritos.id_tabela;
-        tipo.textContent = favoritos.tipo;
-        nome.textContent = favoritos.nome;
-        desc.textContent = favoritos.descricao;
-        categoria.textContent = favoritos.categoria;
-        dadoSensivel.value = favoritos.dado_sensivel;
-        origem.textContent = favoritos.database;
-        container.append(card);
-  
-        // Verifica se a tabela é sensível e exibe o ícone
-        if (dadoSensivel.value == "S") {
-          divDado.style.display = "block";
-        } else {
-          divDado.style.display = "none";
+        if (filtros.includes(favoritos.categoria) || filtros[0] === undefined) {
+          // Preenche os elementos do DOM com as informações da tabela
+          const card = template.content.cloneNode(true).children[0];
+          const tipo = card.querySelector("[data-categoria]");
+          const nome = card.querySelector("[data-nome]");
+          const desc = card.querySelector("[data-descricao]");
+          const origem = card.querySelector("[data-origem]");
+          const categoria = card.querySelector("[data-categoria]");
+          const divDado = card.querySelector("[data-icone-sensivel]");
+          const dadoSensivel = card.querySelector("[data-sensivel]");
+          const id = card.querySelector("[data-id-tabela]");
+          const idTabelaFavoritada = card.querySelector(
+            "[data-id-tabela-favoritada]"
+          );
+          id.value = favoritos.id_tabela;
+          idTabelaFavoritada.value = favoritos.id_tabela;
+          tipo.textContent = favoritos.tipo;
+          nome.textContent = favoritos.nome;
+          desc.textContent = favoritos.descricao;
+          categoria.textContent = favoritos.categoria;
+          dadoSensivel.value = favoritos.dado_sensivel;
+          origem.textContent = favoritos.database;
+          container.append(card);
+    
+          // Verifica se a tabela é sensível e exibe o ícone
+          if (dadoSensivel.value == "S") {
+            divDado.style.display = "block";
+          } else {
+            divDado.style.display = "none";
+          }
+    
+          // Retorna um objeto com as informações de favoritos
+          return {
+            id: favoritos.id_tabela,
+            idTabelaFavoritada: favoritos.id_tabela,
+            tipo: favoritos.tipo,
+            nome: favoritos.nome,
+            desc: favoritos.descricao,
+            categoria: favoritos.categoria,
+            dadoSensivel: favoritos.dado_sensivel,
+            origem: favoritos.database,
+            element: card,
+          };
         }
-  
-        // Retorna um objeto com as informações de favoritos
-        return {
-          id: favoritos.id_tabela,
-          idTabelaFavoritada: favoritos.id_tabela,
-          tipo: favoritos.tipo,
-          nome: favoritos.nome,
-          desc: favoritos.descricao,
-          categoria: favoritos.categoria,
-          dadoSensivel: favoritos.dado_sensivel,
-          origem: favoritos.database,
-          element: card,
-        };
       });
       // Inicializa o Fuse.js com os dados de favoritos
       inicializaFuze(favoritos);
