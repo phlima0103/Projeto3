@@ -848,6 +848,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 
 .secao-feedback__input{
   background: var(--caixas);
+  color: var(--preto-texto);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   border: none;
@@ -1013,8 +1014,8 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   transform: translate(-50%, -50%);
   width: 830px;
   padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: var(--branco);
+  border: 1px solid var(--caixas);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 9999;
 }
@@ -1023,6 +1024,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--preto-texto);
 }
 
 .pop-up__label__titulo {
@@ -1036,9 +1038,10 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 .pop-up__input {
   box-sizing: border-box;
   padding: 5px;
-  background: #FFFFFF;
+  background: var(--caixas);
   border: 1px solid #000000;
   border-radius: 15px;
+  color: var(--preto-texto);
 }
 
 .pop-up__button {
