@@ -118,7 +118,20 @@ function pesquisaDifusa(valor, pagina) {
 
   // Ordena os itens pelos resultados
   const resultadosOrdenados = resultados.map(({ item, score }) => ({ item, score }))
-  .sort((a, b) => a.score - b.score);
+  .sort((a, b) => {
+    // Verifica se "verificacao_governanca" contém "S"
+    const aHasS = a.item.verificacao_governanca.includes("S");
+    const bHasS = b.item.verificacao_governanca.includes("S");
+
+    // Ordena de acordo com a presença de "S" em "verificacao_governanca"
+    if (aHasS && !bHasS) {
+      return -1; // a vem antes de b
+    } else if (!aHasS && bHasS) {
+      return 1; // b vem antes de a
+    } else {
+      return 0; // Sem mudança na ordenação
+    }
+  });
 
   // Armazena os elementos visíveis e o número de cartões mostrados
   const visibilidadeItem = new Set();
