@@ -305,7 +305,7 @@ app.post('/inserirfeedback', urlencodedParser, (req, res) => {
       throw err;
     }
   });
-  res.write('<p>Feedback inserido com sucesso!</p>');
+  res.render('html/feedbackEnviado')
   res.end();
 })
 //Endpoint para buscar os feedbacks
