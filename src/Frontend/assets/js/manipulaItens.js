@@ -60,7 +60,7 @@ $(document).ready(function () {
     // Verifica se a caixa de seleção está marcada
     if ($(this).is(':checked')) {
       // Atualiza a altura da tag main quando o input 'campos' for ativo
-      $('.principal-detalhes-tabelas').css('min-height', '385vh');
+      $('.principal-detalhes-tabelas').css('min-height', '305vh');
     }
   });
 
@@ -91,7 +91,7 @@ $(document).ready(function () {
   })
 
   // Armazena o botão de edição 
-  const botaoEditar = document.querySelectorAll(".secao-conteudo__secao-descricao__div__botao-editar__imagem");
+  const botaoEditar = document.querySelectorAll(".secao-conteudo__secao-descricao__div__botao-editar");
 
   // Armazena a tag main
   const main = document.querySelector(".principal-detalhes-tabelas");
@@ -189,3 +189,4 @@ $(document).ready(function () {
   });
 
 });
+

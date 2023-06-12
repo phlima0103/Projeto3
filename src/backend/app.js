@@ -88,6 +88,9 @@ app.get('/tabela', (req, res) => {
   });
 });
 
+
+/********************* ENDPOINTS DE SOLICITAÇÕES********************/
+//Endpoint para realizar solicitação de alteração, a partir de um sql code
 app.post('/solicitar', urlencodedParser, (req, res) => {
   const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
   const {id_usuario, sql_code} = req.body
@@ -105,6 +108,7 @@ app.post('/solicitar', urlencodedParser, (req, res) => {
   })
 });
 
+//Enpoint para listar todas as solicitações feitas
 app.get('/solicitacoes', (req, res) => {
   const sql = "SELECT * FROM solicitacoes"
   db.all(sql, (err, rows) => {
@@ -116,6 +120,7 @@ app.get('/solicitacoes', (req, res) => {
   })
 });
 
+//Endpoint para recusar/excluir uma solicitação feita
 app.delete('/recusar', urlencodedParser, (req, res) => {
   var sql = `DELETE FROM solicitacoes WHERE id_solicitacao=${req.body.id_solicitacao}`
   db.run(sql, (err) => {
@@ -126,23 +131,6 @@ app.delete('/recusar', urlencodedParser, (req, res) => {
     }
   });
 });
-
-
-app.post('/solicitar', (req, res) => {
-  const sql = "INSERT INTO solicitacoes (id_usuario, data, sql_code) VALUES (?, ?, ?)"
-  const {id_usuario, data, sql_code} = req.body
-  const valores = [id_usuario, data, sql_code]
-
-  db.run(sql, valores, (err) => {
-    if (err) {
-      throw err
-    } else {
-      console.log(sql)
-      res.status(200).send("Tabela inserida")
-    }
-  })
-})
-
 
 //Endpoint para a realização da atualização dos metadados, de acordo com o formulário
 app.post('/atualizar', urlencodedParser, (req, res) => {
@@ -172,23 +160,6 @@ app.post('/atualizar', urlencodedParser, (req, res) => {
   });
 });
 
-
-
-// Endpoint para filtrar as tabelas de acordo com a sua categoria
-// app.get('/tabelas/filtro', (req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   const sql = `SELECT * FROM tabela WHERE categoria =` + req.query.categoria;
-//   db.all(sql, [], (err, rows) => {
-//     if (err) {
-//       console.error(err.message);
-//       res.status(500).send('Erro ao buscar tabelas.');
-//     } else {
-//       res.json(rows);
-//     }
-//   });
-// });
-
 /*********** ENDPOINTS DE CAMPOS ***********/
 // Endpoint que lista todos os campos que estao em uma tabela
 app.get('/campos', (req, res) => {
@@ -202,163 +173,6 @@ app.get('/campos', (req, res) => {
     } else {
       res.json(rows);
     }
-  });
-});
-
-// Endpoint para filtrar os campos de acordo com seu tipo
-// app.get('/campos/filtro', (req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   sql = 'SELECT * FROM campo WHERE id_tabela=' + req.query.id_tabela;
-//   var db = new sqlite3.Database(DBPATH);
-//   db.all(sql, [], (err, rows) => {
-//     if (err) {
-//       throw err;
-//     }
-//     res.json(rows);
-//   });
-//   db.close();
-// });
-
-//Endpoint para a realização da atualização dos metadados do formulário, de acordo com o formulário
-app.post('/campo/atualizar', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = `UPDATE campo SET nome='${req.body.nome}', tipo='${req.body.tipo}', descricao='${req.body.descricao}' 
-  WHERE id_tabela='${req.body.id_tabela}'`;
-  console.log(sql);
-  db = new sqlite3.Database(DBPATH);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-    res.end();
-  });
-  res.write('<p>Campo Atualizado com sucesso!</p>');
-});
-
-// Endpoint para filtrar os campos de acordo com a sua categoria
-app.get('/campo/tipo', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM campo WHERE tipo = '${req.query.tipo}'`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send('Erro ao buscar tabelas.');
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
-/*********** ENDPOINTS DE PASTAS ***********/
-// Endpoint para criar uma nova pasta
-app.post('/criarpasta', urlencodedParser, (req, res) => {
-  const nome = req.body.nome;
-  const id_usuario = req.body.id_usuario;
-
-  // Verifica se o campo nome foi preenchido
-  if (!nome) {
-    return res
-      .status(400)
-      .json({ error: 'Campos obrigatórios não fornecidos' });
-  }
-
-  const sql = 'INSERT INTO pasta (nome, id_usuario) VALUES (?, ?);';
-  const values = [nome, id_usuario];
-
-  db.run(sql, values, function (err) {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao criar a pasta' });
-    }
-
-    // Retorna o id da pasta criada
-    const pastaId = this.lastID;
-    res.status(201).json({ nome, id_usuario });
-  });
-});
-
-// Endpoint para inserir tabela na pasta
-app.post('/pasta/inserirtabela', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql =
-  `INSERT INTO pasta (id_usuario, id_tabela) VALUES ('${req.body.id_usuario}', '${req.body.id_tabela}' )`;
-
-  console.log(sql);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-  });
-  res.write('<p>Tabela inserida com sucesso!</p>');
-  res.end();
-});
-
-// Endpoint que lista todas as pastas criadas pelo usuário
-app.get('/pastas', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM pasta`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send('Erro ao buscar tabelas.');
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
-// Endpoint que lista todas as tabelas dentro das pastas criadas pelo usuário
-app.get('/pastas/tabelas', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = `SELECT * FROM tabela_pasta`;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      res.status(500).send('Erro ao buscar tabelas.');
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
-//Endpoint de exclusão de uma pasta
-app.get('/pasta/delete', urlencodedParser, (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  sql = `DELETE FROM pasta WHERE id_pasta='${req.query.id_pasta}'`;
-  db = new sqlite3.Database(DBPATH);
-  db.run(sql, [], err => {
-    if (err) {
-      throw err;
-    }
-    res.write('<p>Pasta Removida com sucesso!</p>');
-    res.end();
-  });
-});
-
-//Endpoint de exclusão de uma tabela dentro de uma pasta
-app.post('/pasta/tabela/delete', urlencodedParser, (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  const sql = 'DELETE FROM tabela_pasta WHERE id_tabela = ? AND id_pasta = ?';
-  const params = [req.body.id_tabela, req.body.id_pasta];
-
-  db.run(sql, params, function (err) {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao excluir o item' });
-    }
-
-    if (this.changes === 0) {
-      return res
-        .status(500)
-        .json({ error: 'Item não encontrado ou já excluído' });
-    }
-
-    res.status(200).json({ message: 'Item excluído com sucesso' });
   });
 });
 
@@ -381,7 +195,7 @@ app.get('/visaogeral', (req, res) => {
 
 
 /*********** ENDPOINTS DE FAVORITOS ***********/
-// Endpoint que lista todos os favoritos
+//Endpoint que lista todos os favoritos
 app.get('/favoritos', (req, res) => {
   res.statusCode = 200;
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -412,7 +226,7 @@ app.get('/favoritos/ids', (req,res) => {
   })
 });
 
-// Endpoint join para tabela e favorito
+//Endpoint join para tabela e favorito
 app.get('/tabelasFavoritadas', (req,res) => {
   res.statusCode = 200;
   res.setHeader(`Acess-Control-Allow-Origin`,'*');
@@ -430,6 +244,7 @@ app.get('/tabelasFavoritadas', (req,res) => {
   });
 });
 
+//Enpoint join para tabela e favorito
 app.get('/tabelasFavoritadasSensivel', (req,res) => {
   res.statusCode = 200;
   res.setHeader(`Acess-Control-Allow-Origin`,'*');
@@ -512,4 +327,3 @@ app.get('/feedbacks', (req, res) => {
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
-
