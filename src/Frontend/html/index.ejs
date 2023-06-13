@@ -26,7 +26,7 @@
           <a href="/" class="cabecalho__navegacao__lista__item__link">Home</a>
         </li>
         <li class="cabecalho__navegacao__lista__item">
-          <a href="" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
+          <a href="" id="botao-noturno" class="cabecalho__navegacao__lista__item__link">Modo Noturno</a>
         </li>
         <li class="cabecalho__navegacao__lista__item">
           <a href="/tabelasFavoritadas" class="cabecalho__navegacao__lista__item__link">Favoritos</a>
@@ -34,8 +34,8 @@
       </ul>
     </nav>
   </header>
-  <a class="div-voltar" href="/" id="voltar">
-    <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem">
+  <a class="div-voltar" href="/">
+    <img src="../assets/img/voltar.svg" alt="Botão voltar" class="cabecalho__div-voltar__imagem" id="voltar">
   </a>
 
   <main class="principal-tabelas">
@@ -44,11 +44,11 @@
       <div class="secao-pesquisa__div-pesquisa">
         <div style="display: flex; flex-direction: row; margin-bottom: -2px;">
           <input id="input-pesquisa" type="text" placeholder="Digite sua pesquisa" class="secao-pesquisa__div-pesquisa__input" data-input-pesquisa>
-          <button id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro"> 
+          <button title="Clique para acessar os filtros" id="btn-filtro" class="secao-pesquisa__div-pesquisa__botao botao-filtro btn-filtro"> 
             <img id="Vazio" src="../assets/img/filtro.svg" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
             <img id="Preenchido" src="../assets/img/filtroPreenchido.svg" style="display: none" alt="Ícone de filtro" class="secao-pesquisa__div-pesquisa__botao__imagem">
           </button>
-          <a id="btn-favoritos" class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/tabelasFavoritadas">
+          <a title="Clique para acessar tabelas favoritadas" id="btn-favoritos" class="secao-pesquisa__div-pesquisa__botao botao-favorito" href="/tabelasFavoritadas">
             <img id="FavoritoVazio" src="../assets/img/favorito.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px">
             <img id="FavoritoPreenchido" src="../assets/img/favoritoPreenchido.svg" alt="Ícone de favoritos" class="secao-pesquisa__div-pesquisa__botao__imagem" height="30px" width="30px">
           </a>
@@ -75,14 +75,14 @@
                   <p class="secao-tabelas__lista__item__div-informacoes__div-detalhes__paragrafo-origem" data-origem></p>
                 </div>
                 <div class="secao-tabelas__lista__item__div-informacoes__div-icones">
-                  <a class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito">
-                    <input type="hidden" readonly id="id_tabela" value="" data-id-tabela-favorito>
-                    <img src="../assets/img/favorito.svg" height="30px" width="30px" data-imagem-favorito>
-                  </a>
                   <div id="div-sensivel" class="secao-tabelas_lista_item_div-informacoes_div-icones__botao-sensivel" data-icone-sensivel>
                     <input type="hidden" class="secao-tabelas_lista_item_div-informacoes_div-icones__input-sensivel" value="" data-sensivel>
                     <img src="../assets/img/critico.svg" class="icon">
                   </div>
+                  <a class="secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito">
+                    <input type="hidden" readonly id="id_tabela" value="" data-id-tabela-favorito>
+                    <img src="../assets/img/favorito.svg" height="30px" width="30px" data-imagem-favorito>
+                  </a>
                 </div>
               </div>
               <div class="secao-tabelas__lista__item__div-paragrafo">
@@ -114,9 +114,9 @@
   </div>
 
   <footer class="rodape">
-    <img src="../assets/img/logoBancoPan.svg" alt="Logo do Banco PAN" class="rodape__imagem-logo-pan">
+    <img src="../assets/img/logoBancoPan.svg" alt="Logo do Banco PAN" class="rodape__imagem-logo-pan" id="pan-logo">
     <p class="rodape__paragrafo">&copy; Copyright 2023 - Desenvolvido por <a href="" class="rodape__paragrafo__link">Agilify</a></p>
-    <img src="../assets/img/logoProjeto.svg" alt="Logo do grupo dos alunos do Inteli, o Project Athena" class="rodape__imagem-logo-grupo">
+    <img src="../assets/img/logoProjeto.svg" alt="Logo do grupo dos alunos do Inteli, o Project Athena" class="rodape__imagem-logo-grupo" id="athena-logo">
   </footer>
 
 
@@ -124,5 +124,6 @@
   <script src="../assets/js/animacaoCabecalho.js"></script>
   <script src="../assets/js/manipulaItens.js" defer></script>
   <script src="../assets/js/mapeiaCategorias.js"></script>
+  <script src="../assets/js/modoNoturno.js"></script>
 </body>
 </html>
