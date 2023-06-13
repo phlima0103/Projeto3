@@ -23,23 +23,19 @@ $(document).ready(() => {
   $(document).on("click", "#btn-filtro", () => {
     // Ao clicar, caso esteja fechado ele abre
     if (toggle) {
-      $("#btn-filtro").css("background-color", "#F3F4F9");
-      $("#btn-filtro").css("padding", "5px");
-      $("#btn-filtro").css("border-top-right-radius", "15px");
-      $("#btn-filtro").css("border-top-left-radius", "15px");
-      $("#btn-filtro").css("box-shadow", "4px 4px 4px rgba(0, 0, 0, 0.25)");
-      $(".secao-pesquisa__div-filtro").slideDown(300);
-      $(".secao-pesquisa__div-filtro").css("display", "inline-grid");
-      $(".secao-pesquisa__div-filtro").css("height", "150px");
+      $("#btn-filtro").removeClass("btn-filtro ");
+      $("#btn-filtro").addClass("btn-filtro-ativado ");
+      $( ".secao-pesquisa__div-filtro" ).slideDown( 300 );
+      $( ".secao-pesquisa__div-filtro" ).css( "display", "inline-grid");
+      $( ".secao-pesquisa__div-filtro" ).css( "height", "150px");
 
       toggle = !toggle;
 
       // caso esteja aberto ele fecha
     } else {
-      $("#btn-filtro").css("background-color", "transparent");
-      $("#btn-filtro").css("padding-top", "0");
-      $("#btn-filtro").css("box-shadow", "none");
-      $(".secao-pesquisa__div-filtro").slideUp(300);
+      $("#btn-filtro").addClass("btn-filtro ");
+      $("#btn-filtro").removeClass("btn-filtro-ativado ");
+      $( ".secao-pesquisa__div-filtro" ).slideUp( 300 );
 
       toggle = !toggle;
     }
