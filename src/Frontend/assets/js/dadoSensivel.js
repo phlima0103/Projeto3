@@ -24,7 +24,7 @@ $(document).on('click', '.secao-tabelas__lista__item__paragrafo-div', function (
   var idTabela = $(this).find('[data-id-tabela]').val();
 
   // Cria uma nova URL com base no "id" da tabela caputrado acima
-  var url = 'informacoes_tabela?id=' + idTabela;
+  var url = 'informacoesTabela?id=' + idTabela;
   
   // Redireciona para a URL com base no ID da tabela
   window.location.href = url;
