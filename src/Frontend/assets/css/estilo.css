@@ -10,6 +10,7 @@
 
 html, body {
   min-height: 100vh;
+  background-color: var(--branco);
 }
 
 /* Tag main da parte de detalhes da tabela */
@@ -920,6 +921,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 
 .titulo-favoritos {
   font-size: 60px;
+  color: var(--preto-texto);
 }
 
 .secao-tabelas__lista__item__div-informacoes-favoritos {
