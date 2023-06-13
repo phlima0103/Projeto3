@@ -12,9 +12,12 @@ let fuse;
 
 let filtro = "";
 
+// Monitora a mudança do filtro de campos
 filtroInput.onchange = (event) => {
+  // caso o valor selecionado for igual a "tipo-campo" significa que nenhum campo foi selecionado
   event.target.value === "tipo-campo"
     ? (filtro = "")
+    // caso contrario a variavel filtro deve possuir o mesmo valor do input select
     : (filtro = event.target.value);
   exibir(filtro)
 };
