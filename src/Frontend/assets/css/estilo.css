@@ -708,7 +708,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 }
 
 .secao-conteudo__secao__campos__lista__item__div-tipo__paragrafo {
-  background: var(--azul);
+  background: #FFFFFF;
   border-radius: 20px;
   padding: 0.5rem;
   color: var(--azul2);
