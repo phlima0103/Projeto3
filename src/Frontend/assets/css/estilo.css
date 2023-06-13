@@ -161,6 +161,7 @@ html, body {
   margin-left: 1.5rem;
   color: #000000;
   text-decoration: none;
+  width: 100%;
 }
 
 .cabecalho__div-voltar__imagem-favoritos {
@@ -642,6 +643,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 .secao-conteudo__secao-detalhes__div__input, .secao-conteudo__secao-responsavel__div__label__input, .secao-conteudo__secao-tecnico__div__label__input, .secao-conteudo__secao-tecnico__div-atualizacao__input {
   background: none;
   border: none;
+  width: 320px;
   color: var(--preto-texto);
   outline: none;
 }
@@ -861,6 +863,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   padding: 1.5rem;
   font-size: 15px;
   outline: none;
+  resize: none
 }
 
 .secao-feedback__icone {
