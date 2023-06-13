@@ -1,18 +1,21 @@
+// Inicia o Jquery
 $(document).ready(function() {
-    
+    // Variável que armazena o item "nightMode"
     var nightMode = localStorage.getItem('nightMode');
 
+    // Se nightMode for verdadeiro, liga o modo noturno, caso contrário, desliga ele
     if (nightMode === 'true') {
-      enableNightMode();
+      ligaModoNoturno(); 
     } else {
-      disableNightMode()
+      desligaModoNoturno() 
     }
-  
+  // Botão que define a ativação do switch do modo noturno
     $('#botao-noturno').click(function() {
-      toggleNightMode();
+      toggleModoNoturno(); 
     });
-  
-    function disableNightMode() {
+
+  // Função que remove a classe de css e volta as imagens para seu modo claro
+    function desligaModoNoturno() {
       $('body').removeClass('dark-mode');
       $('#night-mode-toggle').text('Enable Night Mode');
       localStorage.setItem('nightMode', 'false');
@@ -24,7 +27,8 @@ $(document).ready(function() {
       voltarBotao.src = '../assets/img/voltar.svg';
     }
 
-    function enableNightMode() {
+// Função que adiciona a classe css e altera as imagens para modo noturno
+    function ligaModoNoturno() {
       $('body').addClass('dark-mode');
       $('#night-mode-toggle').text('Disable Night Mode');
       localStorage.setItem('nightMode', 'true');
@@ -36,12 +40,12 @@ $(document).ready(function() {
       voltarBotao.src = '../assets/img/voltarBranco.svg'
     }
     
-  
-    function toggleNightMode() {
+  // Verifica se o modo noturno esta presente ou não e define se ele será ligado ou não baseado nisso
+    function toggleModoNoturno() {
       if ($('body').hasClass('dark-mode')) {
-        disableNightMode();
+        desligaModoNoturno();
       } else {
-        enableNightMode();
+        ligaModoNoturno();
       }
     }
   });

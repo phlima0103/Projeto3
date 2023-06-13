@@ -58,7 +58,7 @@ $(document).ready(() => {
 
       // Altera as cores do botão
       $(`#${event.target.id}`).css('background-color', '#4DA9FF')
-      $(`#${event.target.id}`).css('color', '#FFF')
+      $(`#${event.target.id}`).css('color', '#FFFFFF')
 
       // Realiza a pesquisa novamente
       pesquisaDifusa($('#input-pesquisa').val(), 1)
@@ -68,7 +68,12 @@ $(document).ready(() => {
 
       // Altera as cores do botão
       $(`#${event.target.id}`).css('background-color', 'transparent')
-      $(`#${event.target.id}`).css('color', '#4DA9FF')
+      if ($('body').hasClass('dark-mode')) {
+        $(`#${event.target.id}`).css('color', 'var(--azul)')
+      } else {
+        $(`#${event.target.id}`).css('color', '#4DA9FF')
+      }
+      
 
       // Realiza a pesquisa novamente
       pesquisaDifusa($('#input-pesquisa').val(), 1)
