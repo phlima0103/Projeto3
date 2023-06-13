@@ -339,6 +339,9 @@ main {
   border-top-left-radius: 1.5rem;
   border-top-right-radius: 1.5rem;
   z-index: 0;
+  display: flex;
+  gap: .8rem;
+  align-items: center;
 }
 
 .hide {

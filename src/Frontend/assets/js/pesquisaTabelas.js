@@ -245,6 +245,9 @@ fetch("/favoritos/ids")
       const divDado = card.querySelector('[data-icone-sensivel]');
       const dadoSensivel = card.querySelector('[data-sensivel]');
       const favorito = card.querySelector('[data-imagem-favorito]');
+      const divVerificacao = card.querySelector('[data-icone-verificacao]')
+      const verificacao = card.querySelector('[data-verificacao]');
+
       nome.textContent = tabela.nome;
       assunto.textContent = tabela.categoria;
       desc.textContent = tabela.descricao;
@@ -252,6 +255,7 @@ fetch("/favoritos/ids")
       idTabela.value = tabela.id;
       idTabelaFavorito.value = tabela.id;
       dadoSensivel.value = tabela.dado_sensivel;
+      verificacao.value = tabela.verificacao_governanca;
       container.append(card);
       // Verifica se a tabela é sensível e exibe o ícone
       if(dadoSensivel.value == "S"){
@@ -259,6 +263,15 @@ fetch("/favoritos/ids")
       } else {
         divDado.style.display = "none";
       }
+
+      // Verifica se a tabela é verificada e exibe o ícone
+      if(verificacao.value == "S"){
+        divVerificacao.style.display = "block";
+      } else {
+        divVerificacao.style.display = "none";
+      }
+
+
       // Verifica se a tabela é favorita e, caso seja, exibe o ícone de favorito preenchido
       if(listaFavoritos.includes(tabela.id)){
         favorito.src = "../assets/img/favoritoPreenchido.svg";
@@ -275,6 +288,7 @@ fetch("/favoritos/ids")
         id: tabela.id,
         verificacao_governanca: tabela.verificacao_governanca,
         dadoSensivel: tabela.dado_sensivel,
+        verificacao: tabela.verificacao_governanca,
         element: card
       };
     });
