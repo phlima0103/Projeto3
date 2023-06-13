@@ -1156,3 +1156,18 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   --estrelas: #9b9b9b;
   --filtrar: 100%
 }
+
+.resposta {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.resposta img {
+  width: 300px;
+}
+
+.resposta button {
+  margin-top: 50px;
+}
