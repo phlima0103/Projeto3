@@ -32,10 +32,10 @@ var caminho = new sqlite3.Database(DBPATH);
 app.set("view engine", "ejs");
 
 // Define o diretório 'views' como o diretório raiz das páginas HTML​
-app.set("views", "./frontend/");
+app.set("views", "./Frontend/");
 
 // Define o diretório 'frontend' como o diretório raiz do servidor web
-app.use(express.static("./frontend/"));
+app.use(express.static("./Frontend/"));
 
 // Define o express para receber dados em formato JSON
 app.use(express.json());
