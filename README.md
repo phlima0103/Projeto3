@@ -4,7 +4,7 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-#Projeto Athena
+#Project Athena
 
 ## Agilify
 
@@ -34,7 +34,7 @@
 
 ## 📝 Descrição
 
-O problema apresentado pelo Banco PAN consiste na atual plataforma de pesquisa (PANPEDIA) não apresentar uma usabilidade eficaz, uma vez que apresenta uma ausência de interação com  o usuário, além de uma falta da qualidade e acessibilidade dos metadado. Dessa forma, os objetivos gerais deste projeto consistem em desenvolver uma aplicação web que permita que os colaboradores do Banco PAN consigam realizar buscas de bases de dados de forma mais intuitiva e acessível, através de uma interface digital agradável, de mecanismos que deixem tal pesquisa mais assertiva e da acessibilidade nos metadados. Dessa forma, bus
+O problema apresentado pelo Banco PAN consiste na atual plataforma de pesquisa (PANPEDIA) não apresentar uma usabilidade eficaz, uma vez que apresenta uma ausência de interação com  o usuário, além de uma falta da qualidade e acessibilidade dos metadado. Dessa forma, os objetivos gerais deste projeto consistem em desenvolver uma aplicação web que permita que os colaboradores do Banco PAN consigam realizar buscas de bases de dados de forma mais intuitiva e acessível, através de uma interface digital agradável, de mecanismos que deixem tal pesquisa mais assertiva e da acessibilidade nos metadados.
 
 ## 📁 Estrutura de pastas
 
