@@ -23,7 +23,7 @@ const hostname = "127.0.0.1";
 const port = 1234;
 
 // Armazena o caminho do arquivo que contém o banco de dados do projeto
-const DBPATH = "./backend/data/db_projeto.db";
+const DBPATH = "./backend/data/db_projeto_teste.db";
 
 // Cria e armazena uma conexão com o banco de dados SQLite no caminho especificado
 var caminho = new sqlite3.Database(DBPATH);
