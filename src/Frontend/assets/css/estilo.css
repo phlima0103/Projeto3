@@ -362,6 +362,10 @@ main {
   color: var(--preto-texto);
 }
 
+.secao-tabelas__lista__item__paragrafo:hover {
+  cursor: pointer;
+}
+
 .secao-tabelas__lista__item__div-informacoes__div-detalhes {
   display: flex;
   align-items: center;
@@ -371,6 +375,9 @@ main {
 .secao-tabelas__lista__item__div-informacoes__div-icones__botao-favorito, .secao-tabelas__lista__item__div-informacoes__div-icones__botao-sensivel {
   background-color: transparent;
   border: none;
+}
+
+#icone-da-lixeira:hover {
   cursor: pointer;
 }
 
@@ -756,6 +763,11 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   outline: none;
 }
 
+.secao-conteudo__div-pesquisa__select:hover {
+  cursor: pointer;
+  background-color: #c0d2ef;
+}
+
 .secao-conteudo__div-pesquisa__input {
   background: var(--resultados-barra) var(--lupa) no-repeat left padding-box;
   border: none;
@@ -900,6 +912,12 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   font-size: 20px;
   color: #FFFFFF;
 }
+
+.secao-feedback__botao:hover {
+  background-color: #408BD1;
+  cursor: pointer;
+}
+
 .secao-feedback__comentario__div-label {
   display: flex;
   align-items: center;
@@ -1012,6 +1030,7 @@ input.secao-botoes__input:checked + .secao-botoes__label {
 
 .paginacao-link:hover {
   background-color: #F3F4F9;
+  color: #000000;
 }
 
 .pop-up {
@@ -1061,6 +1080,11 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   cursor: pointer;
 }
 
+.pop-up__button:hover {
+  background-color: #408BD1;
+  cursor: pointer;
+}
+
 .fechar-pop-up {
   position: absolute;
   top: 10px;
@@ -1089,6 +1113,10 @@ input.secao-botoes__input:checked + .secao-botoes__label {
   border-radius: 100px;
   color: var(--azul);
   font-size: 16px;
+}
+
+.filtro-button:hover {
+  background-color: #c0d2ef;
 }
 
 
